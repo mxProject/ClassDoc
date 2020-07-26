@@ -1,0 +1,2081 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>mxProject.Tools.ClassDoc</name>
+    </assembly>
+    <members>
+        <member name="T:mxProject.Tools.ClassDoc.ClassDocContext">
+            <summary>
+            A context that manages the state of the output process for class documents.
+            </summary>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.ClassDocContext.Null">
+            <summary>
+            null instance.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.ClassDocContext.TypeFilter">
+            <summary>
+            Gets or sets the method that determines if the specified type is an output target.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.ClassDocContext.ConstructorFilter">
+            <summary>
+            Gets or sets the method that determines if the specified constructor is an output target.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.ClassDocContext.MethodFilter">
+            <summary>
+            Gets or sets the method that determines if the specified method is an output target.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.ClassDocContext.PropertyFilter">
+            <summary>
+            Gets or sets the method that determines if the specified property is an output target.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.ClassDocContext.FieldFilter">
+            <summary>
+            Gets or sets the method that determines if the specified field is an output target.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.ClassDocContext.EventFilter">
+            <summary>
+            Gets or sets the method that determines if the specified event is an output target.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.ClassDocContext.StoreTypeInfo(mxProject.Tools.ClassDoc.TypeWithComment)">
+            <summary>
+            Stores the specified type of information.
+            </summary>
+            <param name="type">The type information.</param>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.ClassDocContext.TryGetTypeInfo(System.Type,mxProject.Tools.ClassDoc.TypeWithComment@)">
+            <summary>
+            Gets the specified type of information.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="found">The Type information found.</param>
+            <returns>Returns true if found. Otherwise, false.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.ClassDocContext.GetTypeInfo(System.Type)">
+            <summary>
+            Gets the specified type of information. If no XML comment is found, returns empty XML comment information.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The type information.</returns>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.ClassDocContext.m_TypeComments">
+            <summary>
+            xml comments for types.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.ClassDocContext.TryGetTypeInfo(mxProject.Tools.ClassDoc.XmlCommentSignature,mxProject.Tools.ClassDoc.TypeWithComment@)">
+            <summary>
+            Gets information for the specified type.
+            </summary>
+            <param name="typeSignature">XML comment signature.</param>
+            <param name="type">The type information.</param>
+            <returns>Returns true if found. Otherwise, false.</returns>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.ClassDocContext.m_MethodComments">
+            <summary>
+            xml comments for methods.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.ClassDocContext.TryGetMethodInfo(mxProject.Tools.ClassDoc.XmlCommentSignature,mxProject.Tools.ClassDoc.MethodInfoWithComment@)">
+            <summary>
+            Gets information for the specified method.
+            </summary>
+            <param name="methodSignature">XML comment signature.</param>
+            <param name="method">The method information.</param>
+            <returns>Returns true if found. Otherwise, false.</returns>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.ClassDocContext.m_PropertyComments">
+            <summary>
+            xml comments for properties.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.ClassDocContext.TryGetPropertyInfo(mxProject.Tools.ClassDoc.XmlCommentSignature,mxProject.Tools.ClassDoc.PropertyInfoWithComment@)">
+            <summary>
+            Gets information for the specified property.
+            </summary>
+            <param name="propertySignature">XML comment signature.</param>
+            <param name="property">The property information.</param>
+            <returns>Returns true if found. Otherwise, false.</returns>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.ClassDocContext.m_FieldComments">
+            <summary>
+            xml comments for fields.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.ClassDocContext.TryGetFieldInfo(mxProject.Tools.ClassDoc.XmlCommentSignature,mxProject.Tools.ClassDoc.FieldInfoWithComment@)">
+            <summary>
+            Gets information for the specified field.
+            </summary>
+            <param name="fieldSignature">XML comment signature.</param>
+            <param name="field">The field information.</param>
+            <returns>Returns true if found. Otherwise, false.</returns>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.ClassDocContext.m_EventComments">
+            <summary>
+            xml comments for events.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.ClassDocContext.TryGetEventInfo(mxProject.Tools.ClassDoc.XmlCommentSignature,mxProject.Tools.ClassDoc.EventInfoWithComment@)">
+            <summary>
+            Gets information for the specified event.
+            </summary>
+            <param name="eventSignature">XML comment signature.</param>
+            <param name="evt">The event information.</param>
+            <returns>Returns true if found. Otherwise, false.</returns>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.ClassDocUtility">
+            <summary>
+            Utility methods.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.ClassDocUtility.EnumerateGenericConstraints(System.Type)">
+            <summary>
+            Enumerates generic constraints.
+            </summary>
+            <param name="genericArgument"></param>
+            <returns></returns>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.ConstructorInfoExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Reflection.ConstructorInfo"/>.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.ConstructorInfoExtensions.GetScope(System.Reflection.ConstructorInfo)">
+            <summary>
+            Gets the scope.
+            </summary>
+            <param name="method"></param>
+            <returns>The scope.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.ConstructorInfoExtensions.FormatToReadableSignature(System.Reflection.ConstructorInfo)">
+            <summary>
+            Format it to a human-readable signature, like ".ctor(IList&lt;int&gt;)".
+            </summary>
+            <param name="method"></param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.ConstructorInfoExtensions.FormatToXmlCommentSignature(System.Reflection.ConstructorInfo)">
+            <summary>
+            Format it to a XML comment signature, like "M:SampleNamespace.SampleClass.#ctor(System.Collection.Generic.IList{int})".
+            </summary>
+            <param name="method"></param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.ConstructorInfoExtensions.FormatToDeclaretion(System.Reflection.ConstructorInfo)">
+            <summary>
+            Foramt it to a declaretion statement.
+            </summary>
+            <param name="ctor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.ConstructorInfoExtensions.IsRecommendOutputToDocument(System.Reflection.ConstructorInfo)">
+            <summary>
+            Gets whether output to document is recommended.
+            </summary>
+            <param name="ctor"></param>
+            <returns>Returns true if recommended. Otherwise, false.</returns>
+            <remarks>
+            <para>
+            If <see cref="M:mxProject.Tools.ClassDoc.ConstructorInfoExtensions.IsAccesibleFromOutsideAssembly(System.Reflection.ConstructorInfo)"/> method returns false, then this method will return false.
+            </para>
+            <para>
+            If <see cref="M:mxProject.Tools.ClassDoc.MemberExtenstions.IsObsolete(System.Reflection.MemberInfo)"/> method returns true, then this method will return false.
+            </para>
+            <para>
+            If <see cref="M:mxProject.Tools.ClassDoc.MemberExtenstions.IsBrowsable(System.Reflection.MemberInfo)"/> method returns false, then this method will return false.
+            </para>
+            <para>
+            If the type for which the specified constructor is declared is delegate, then this method will return false.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.ConstructorInfoExtensions.IsAccesibleFromOutsideAssembly(System.Reflection.ConstructorInfo)">
+            <summary>
+            Gets whether it can be accessed from outside the assembly.
+            </summary>
+            <param name="ctor"></param>
+            <returns>Returns true if public or protected. Otherwise, false.</returns>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.ConstructorInfoWithComment">
+            <summary>
+            Constructor information and its XML comment.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.ConstructorInfoWithComment.#ctor(System.Reflection.ConstructorInfo,mxProject.Tools.ClassDoc.XmlComment,mxProject.Tools.ClassDoc.ClassDocContext)">
+            <summary>
+            Creates a new instance.
+            </summary>
+            <param name="ctor">The constructor information.</param>
+            <param name="comment">The XML comment.</param>
+            <param name="context">The context that manages the state of the output process for class documents.</param>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.ConstructorInfoWithComment.GetMemberScope">
+            <summary>
+            Gets the scope.
+            </summary>
+            <returns>The scope.</returns>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.ConstructorInfoWithComment.Declaretion">
+            <summary>
+            Gets the declaretion statement.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.ConstructorInfoWithComment.Parameters">
+            <summary>
+            Gets the parameters.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.ConstructorInfoWithComment.GetInheritComment">
+            <inheritdoc/>
+            <remarks>
+            <para>
+            This class always returns null.
+            </para>
+            </remarks>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.EventInfoExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Reflection.EventInfo"/>.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.EventInfoExtensions.GetAddMethodScope(System.Reflection.EventInfo)">
+            <summary>
+            Gets the scope of AddMethod.
+            </summary>
+            <param name="evt"></param>
+            <returns>The scope.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.EventInfoExtensions.GetRemoveMethodScope(System.Reflection.EventInfo)">
+            <summary>
+            Gets the scope of RemoveMethod.
+            </summary>
+            <param name="evt"></param>
+            <returns>The scope.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.EventInfoExtensions.GetRaiseMethodScope(System.Reflection.EventInfo)">
+            <summary>
+            Gets the scope of RaizeMethod.
+            </summary>
+            <param name="evt"></param>
+            <returns>The scope.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.EventInfoExtensions.IsStatic(System.Reflection.EventInfo)">
+            <summary>
+            Gets a value indicating whether the event is static.
+            </summary>
+            <param name="evt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.EventInfoExtensions.FormatToXmlCommentSignature(System.Reflection.EventInfo)">
+            <summary>
+            Format it to a XML comment signature, like "E:SampleNamespace.SampleClass.AddedItem".
+            </summary>
+            <param name="evt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.EventInfoExtensions.IsRecommendOutputToDocument(System.Reflection.EventInfo)">
+            <summary>
+            Gets whether output to document is recommended.
+            </summary>
+            <param name="evt"></param>
+            <returns>Returns true if recommended. Otherwise, false.</returns>
+            <remarks>
+            <para>
+            If <see cref="P:System.Reflection.EventInfo.IsSpecialName"/> event returns true, then this method will return false.
+            </para>
+            <para>
+            If <see cref="M:mxProject.Tools.ClassDoc.EventInfoExtensions.IsAccesibleFromOutsideAssembly(System.Reflection.EventInfo)"/> method returns false, then this method will return false.
+            </para>
+            <para>
+            If <see cref="M:mxProject.Tools.ClassDoc.MemberExtenstions.IsBrowsable(System.Reflection.MemberInfo)"/> method returns false, then this method will return false.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.EventInfoExtensions.IsAccesibleFromOutsideAssembly(System.Reflection.EventInfo)">
+            <summary>
+            Gets whether it can be accessed from outside the assembly.
+            </summary>
+            <param name="evt"></param>
+            <returns>Returns true if getter or setter is accessible. Otherwise, false.</returns>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.EventInfoWithComment">
+            <summary>
+            Event information and its XML comment.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.EventInfoWithComment.#ctor(System.Reflection.EventInfo,mxProject.Tools.ClassDoc.XmlComment,mxProject.Tools.ClassDoc.ClassDocContext)">
+            <summary>
+            Create a new instance.
+            </summary>
+            <param name="evt">The field information.</param>
+            <param name="comment">The XML comment.</param>
+            <param name="context">The context that manages the state of the output process for class documents.</param>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.EventInfoWithComment.GetMemberScope">
+            <summary>
+            Gets the scope. If AddMethod and RemoveMethod and RaizeMethod have different scopes, the wider scope is returned.
+            </summary>
+            <returns>The scope.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.EventInfoWithComment.GetAddMethodScope">
+            <summary>
+            Gets the scope of AddMethod.
+            </summary>
+            <returns>The scope.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.EventInfoWithComment.GetRemoveMethodScope">
+            <summary>
+            Gets the scope of RemoveMethod.
+            </summary>
+            <returns>The scope.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.EventInfoWithComment.GetRaiseMethodScope">
+            <summary>
+            Gets the scope of RaizeMethod.
+            </summary>
+            <returns>The scope.</returns>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.EventInfoWithComment.IsStatic">
+            <summary>
+            Gets a value indicating whether the event is static.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.EventInfoWithComment.EventHandlerTypeInfo">
+            <summary>
+            Get the type information of the event handler.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.EventInfoWithComment.GetInheritComment">
+            <inheritdoc/>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.EventInfoWithComment.GetSummaryWithInherits">
+            <summary>
+            Gets the summary. Add the content about inheritance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.ExceptionComment">
+            <summary>
+            Comment about the exception.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.ExceptionComment.#ctor(System.String,System.String[],mxProject.Tools.ClassDoc.ClassDocContext)">
+            <summary>
+            Create a new instance.
+            </summary>
+            <param name="exceptionTypeSignature">The exception type signature.</param>
+            <param name="descriptions">The descriptions.</param>
+            <param name="context">The context that manages the state of the output process for class documents.</param>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.ExceptionComment.Context">
+            <summary>
+            Gets the context.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.ExceptionComment.ExceptionTypeSignatureName">
+            <summary>
+            Gets the exception type signature.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.ExceptionComment.ExceptionTypeSignature">
+            <summary>
+            Gets the exception type signature.
+            </summary>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.ExceptionComment.m_ExceptionType">
+            <summary>
+            Gets the exception type. Returns null if the type cannot be obtained from the comment signature.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.ExceptionComment.ExceptionTypeInfo">
+            <summary>
+            Gets the exception type information. Returns null if the type cannot be obtained from the comment signature.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.ExceptionComment.Descriptions">
+            <summary>
+            Gets the description.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.ExceptionComment.GetDescriptions(System.String)">
+            <summary>
+            Gets the description.
+            </summary>
+            <param name="delimiter">The delimiter when multiple descriptions are listed.</param>
+            <returns>The description.</returns>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.FieldInfoExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Reflection.FieldInfo"/>.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.FieldInfoExtensions.GetScope(System.Reflection.FieldInfo)">
+            <summary>
+            Gets the scope.
+            </summary>
+            <param name="field"></param>
+            <returns>The scope.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.FieldInfoExtensions.FormatToXmlCommentSignature(System.Reflection.FieldInfo)">
+            <summary>
+            Format it to a XML comment signature, like "F:SampleNamespace.SampleClass.Item".
+            </summary>
+            <param name="field"></param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.FieldInfoExtensions.IsRecommendOutputToDocument(System.Reflection.FieldInfo)">
+            <summary>
+            Gets whether output to document is recommended.
+            </summary>
+            <param name="field"></param>
+            <returns>Returns true if recommended. Otherwise, false.</returns>
+            <remarks>
+            <para>
+            If <see cref="P:System.Reflection.FieldInfo.IsSpecialName"/> field returns true, then this method will return false.
+            </para>
+            <para>
+            If <see cref="M:mxProject.Tools.ClassDoc.FieldInfoExtensions.IsAccesibleFromOutsideAssembly(System.Reflection.FieldInfo)"/> method returns false, then this method will return false.
+            </para>
+            <para>
+            If <see cref="M:mxProject.Tools.ClassDoc.MemberExtenstions.IsBrowsable(System.Reflection.MemberInfo)"/> method returns false, then this method will return false.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.FieldInfoExtensions.IsAccesibleFromOutsideAssembly(System.Reflection.FieldInfo)">
+            <summary>
+            Gets whether it can be accessed from outside the assembly.
+            </summary>
+            <param name="field"></param>
+            <returns>Returns true if getter or setter is accessible. Otherwise, false.</returns>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.FieldInfoWithComment">
+            <summary>
+            Field information and its XML comment.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.FieldInfoWithComment.#ctor(System.Reflection.FieldInfo,mxProject.Tools.ClassDoc.XmlComment,mxProject.Tools.ClassDoc.ClassDocContext)">
+            <summary>
+            Create a new instance.
+            </summary>
+            <param name="field">The field information.</param>
+            <param name="comment">The XML comment.</param>
+            <param name="context">The context that manages the state of the output process for class documents.</param>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.FieldInfoWithComment.IsStatic">
+            <summary>
+            Gets a value indicating whether the field is static.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.FieldInfoWithComment.GetMemberScope">
+            <inheritdoc/>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.FieldInfoWithComment.FieldTypeInfo">
+            <summary>
+            Get the type information of the field.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.FieldInfoWithComment.GetInheritComment">
+            <inheritdoc/>
+            <remarks>
+            <para>
+            This class always returns null.
+            </para>
+            </remarks>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.GenericParameterAttributesExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Reflection.GenericParameterAttributes"/>.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.GenericParameterAttributesExtensions.GetDeclaration(System.Reflection.GenericParameterAttributes)">
+            <summary>
+            Gets the expression used in the declaration.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.IClassDocumentFormatter">
+            <summary>
+            Provides the functionality needed to format a class document.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.IClassDocumentFormatter.FormatToReadableName(mxProject.Tools.ClassDoc.TypeWithComment,System.Boolean)">
+            <summary>
+            Formats the specified type into a human-readable type name.
+            </summary>
+            <param name="type">The type information.</param>
+            <param name="isFullName">A value whether to get the full type name with namespace.</param>
+            <returns>The formatted name.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.IClassDocumentFormatter.FormatToLink(mxProject.Tools.ClassDoc.TypeWithComment,System.Boolean,System.String,System.String)">
+            <summary>
+            Formats the specified type into a link text.
+            </summary>
+            <param name="type">The type information.</param>
+            <param name="isFullName">A value whether to get the full type name with namespace.</param>
+            <param name="displayFormat">The display format string.</param>
+            <param name="anchorFormat">The anchor format string.</param>
+            <returns>The formatted link text.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.IClassDocumentFormatter.FormatToAnchor(mxProject.Tools.ClassDoc.TypeWithComment,System.String)">
+            <summary>
+            Formats the specified type into an anchor text.
+            </summary>
+            <param name="type">The type information.</param>
+            <param name="anchorFormat">The format string.</param>
+            <returns>The formatted anchor text.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.IClassDocumentFormatter.FormatToReadableSignature(mxProject.Tools.ClassDoc.ConstructorInfoWithComment)">
+            <summary>
+            Formats the specified constructor into a human-readable signature.
+            </summary>
+            <param name="constructor">The constructor information.</param>
+            <returns>The formatted signature.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.IClassDocumentFormatter.FormatToLink(mxProject.Tools.ClassDoc.TypeWithComment,mxProject.Tools.ClassDoc.ConstructorInfoWithComment,System.String,System.String)">
+            <summary>
+            Formats the specified constructor into a link text.
+            </summary>
+            <param name="currentType">The type information that currently being processed.</param>
+            <param name="constructor">The constructor information.</param>
+            <param name="displayFormat">The display format string.</param>
+            <param name="anchorFormat">The anchor format string.</param>
+            <returns>リンク</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.IClassDocumentFormatter.FormatToAnchor(mxProject.Tools.ClassDoc.ConstructorInfoWithComment,System.String)">
+            <summary>
+            Formats the specified constructor into an anchor text.
+            </summary>
+            <param name="constructor">The constructor information.</param>
+            <param name="anchorFormat">The format string.</param>
+            <returns>The formatted anchor text.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.IClassDocumentFormatter.FormatToReadableSignature(mxProject.Tools.ClassDoc.MethodInfoWithComment)">
+            <summary>
+            Formats the specified method into a human-readable signature.
+            </summary>
+            <param name="method">The method information.</param>
+            <returns>The formatted signature.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.IClassDocumentFormatter.FormatToLink(mxProject.Tools.ClassDoc.TypeWithComment,mxProject.Tools.ClassDoc.MethodInfoWithComment,System.String,System.String)">
+            <summary>
+            Formats the specified method into a link text.
+            </summary>
+            <param name="currentType">The type information that currently being processed.</param>
+            <param name="method">The method information.</param>
+            <param name="displayFormat">The display format string.</param>
+            <param name="anchorFormat">The anchor format string.</param>
+            <returns>The formatted link.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.IClassDocumentFormatter.FormatToAnchor(mxProject.Tools.ClassDoc.MethodInfoWithComment,System.String)">
+            <summary>
+            Formats the specified method into an anchor text.
+            </summary>
+            <param name="method">The method information.</param>
+            <param name="anchorFormat">The format string.</param>
+            <returns>The formatted anchor text.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.IClassDocumentFormatter.FormatToReadableSignature(mxProject.Tools.ClassDoc.PropertyInfoWithComment)">
+            <summary>
+            Formats the specified property into a human-readable signature.
+            </summary>
+            <param name="property">The property information.</param>
+            <returns>The formatted signature.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.IClassDocumentFormatter.FormatToLink(mxProject.Tools.ClassDoc.TypeWithComment,mxProject.Tools.ClassDoc.PropertyInfoWithComment,System.String,System.String)">
+            <summary>
+            Formats the specified property into a link text.
+            </summary>
+            <param name="currentType">The type information that currently being processed.</param>
+            <param name="property">The property information.</param>
+            <param name="displayFormat">The display format string.</param>
+            <param name="anchorFormat">The anchor format string.</param>
+            <returns>The formatted link.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.IClassDocumentFormatter.FormatToAnchor(mxProject.Tools.ClassDoc.PropertyInfoWithComment,System.String)">
+            <summary>
+            Formats the specified property into an anchor text.
+            </summary>
+            <param name="property">The property information.</param>
+            <param name="anchorFormat">The format string.</param>
+            <returns>The formatted anchor text.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.IClassDocumentFormatter.FormatToLink(mxProject.Tools.ClassDoc.TypeWithComment,mxProject.Tools.ClassDoc.FieldInfoWithComment,System.String,System.String)">
+            <summary>
+            Formats the specified field into a link text.
+            </summary>
+            <param name="currentType">The type information that currently being processed.</param>
+            <param name="field">The field information.</param>
+            <param name="displayFormat">The display format string.</param>
+            <param name="anchorFormat">The anchor format string.</param>
+            <returns>The formatted link.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.IClassDocumentFormatter.FormatToAnchor(mxProject.Tools.ClassDoc.FieldInfoWithComment,System.String)">
+            <summary>
+            Formats the specified field into an anchor text.
+            </summary>
+            <param name="field">The field information.</param>
+            <param name="anchorFormat">The format string.</param>
+            <returns>The formatted anchor text.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.IClassDocumentFormatter.FormatToLink(mxProject.Tools.ClassDoc.TypeWithComment,mxProject.Tools.ClassDoc.EventInfoWithComment,System.String,System.String)">
+            <summary>
+            Formats the specified event into a link text.
+            </summary>
+            <param name="currentType">The type information that currently being processed.</param>
+            <param name="evt">The event information.</param>
+            <param name="displayFormat">The display format string.</param>
+            <param name="anchorFormat">The anchor format string.</param>
+            <returns>The formatted link.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.IClassDocumentFormatter.FormatToAnchor(mxProject.Tools.ClassDoc.EventInfoWithComment,System.String)">
+            <summary>
+            Formats the specified event into an anchor text.
+            </summary>
+            <param name="evt">The event information.</param>
+            <param name="anchorFormat">The format string.</param>
+            <returns>The formatted anchor text.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.IClassDocumentFormatter.ReplaceReferenceTag(mxProject.Tools.ClassDoc.TypeWithComment,System.String)">
+            <summary>
+            Replaces the reference tag contained in the specified text with the link.
+            </summary>
+            <param name="currentType">The type information that currently being processed.</param>
+            <param name="text">The text.</param>
+            <returns>The replaced text.</returns>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.IClassDocumentWriter">
+            <summary>
+            Provides the functionality required to output a class document.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.IClassDocumentWriter.WriteNamespaceDocument(mxProject.Tools.ClassDoc.NamespaceInfo,mxProject.Tools.ClassDoc.IClassDocumentFormatter)">
+            <summary>
+            Outputs the information of the specified namespace to the document.
+            </summary>
+            <param name="nameSpace">The namespace information.</param>
+            <param name="formatter">The formatter.</param>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.IClassDocumentWriter.WriteTypeDocument(mxProject.Tools.ClassDoc.TypeWithComment,mxProject.Tools.ClassDoc.IClassDocumentFormatter)">
+            <summary>
+            Outputs the information of the specified type to the document.
+            </summary>
+            <param name="type">The type information.</param>
+            <param name="formatter">The formatter.</param>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter">
+            <summary>
+            Document formatter for Markdown.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.#ctor(mxProject.Tools.ClassDoc.ClassDocContext)">
+            <summary>
+            Creates a new instance.
+            </summary>
+            <param name="context">The context that manages the state of the output process for class documents.</param>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.Context">
+            <summary>
+            Gets the context.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.ConstructorAnchorDefaultFormat">
+            <summary>
+            Gets or sets the default format string applied to a constructor anchor.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.MethodAnchorDefaultFormat">
+            <summary>
+            Gets or sets the default format string applied to a method anchor.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.PropertyAnchorDefaultFormat">
+            <summary>
+            Gets or sets the default format string applied to a property anchor.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.FieldAnchorDefaultFormat">
+            <summary>
+            Gets or sets the default format string applied to a field anchor.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.EventAnchorDefaultFormat">
+            <summary>
+            Gets or sets the default format string applied to an event anchor.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.ParameterNameDefaultFormat">
+            <summary>
+            Gets or sets the default format string applied to the a parameter name.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.FormatToReadableName(mxProject.Tools.ClassDoc.TypeWithComment,System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.FormatToAnchor(mxProject.Tools.ClassDoc.TypeWithComment,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.FormatToLink(mxProject.Tools.ClassDoc.TypeWithComment,System.Boolean,System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.FormatToReadableSignature(mxProject.Tools.ClassDoc.ConstructorInfoWithComment)">
+            <inheritdoc/>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.FormatToAnchor(mxProject.Tools.ClassDoc.ConstructorInfoWithComment,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.FormatToLink(mxProject.Tools.ClassDoc.TypeWithComment,mxProject.Tools.ClassDoc.ConstructorInfoWithComment,System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.FormatToReadableSignature(mxProject.Tools.ClassDoc.MethodInfoWithComment)">
+            <inheritdoc/>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.FormatToAnchor(mxProject.Tools.ClassDoc.MethodInfoWithComment,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.FormatToLink(mxProject.Tools.ClassDoc.TypeWithComment,mxProject.Tools.ClassDoc.MethodInfoWithComment,System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.FormatToReadableSignature(mxProject.Tools.ClassDoc.PropertyInfoWithComment)">
+            <inheritdoc/>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.FormatToAnchor(mxProject.Tools.ClassDoc.PropertyInfoWithComment,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.FormatToLink(mxProject.Tools.ClassDoc.TypeWithComment,mxProject.Tools.ClassDoc.PropertyInfoWithComment,System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.FormatToAnchor(mxProject.Tools.ClassDoc.FieldInfoWithComment,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.FormatToLink(mxProject.Tools.ClassDoc.TypeWithComment,mxProject.Tools.ClassDoc.FieldInfoWithComment,System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.FormatToAnchor(mxProject.Tools.ClassDoc.EventInfoWithComment,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.FormatToLink(mxProject.Tools.ClassDoc.TypeWithComment,mxProject.Tools.ClassDoc.EventInfoWithComment,System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.ReplaceReferenceTag(mxProject.Tools.ClassDoc.TypeWithComment,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.ResolveSeeElement(mxProject.Tools.ClassDoc.TypeWithComment,System.Text.RegularExpressions.Match)">
+            <summary>
+            
+            </summary>
+            <param name="thisType"></param>
+            <param name="match"></param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.ResolveNameElement(mxProject.Tools.ClassDoc.TypeWithComment,System.Text.RegularExpressions.Match)">
+            <summary>
+            
+            </summary>
+            <param name="thisType"></param>
+            <param name="match"></param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.ToAnchor(System.String)">
+            <summary>
+            Converts the specified string to anchor format.
+            </summary>
+            <param name="text">The text.</param>
+            <returns>The formatted anchor.</returns>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.s_AnchorIgnoreChars">
+            <summary>
+            Characters that should not be included in the anchor.
+            </summary>
+            <remarks>
+            https://qiita.com/hennin/items/7ee58dd7d7c013a23be7
+            </remarks>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Markdown.MarkdownFormatter.WriteBullets(System.Collections.Generic.IEnumerable{System.String},System.String,System.Int32)">
+            <summary>
+            Outputs the specified string in a bullet list.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.MemberExtenstions">
+            <summary>
+            Extension methods for <see cref="T:System.Reflection.MemberInfo"/>.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.MemberExtenstions.IsObsolete(System.Reflection.MemberInfo)">
+            <summary>
+            Gets whether it is obsolete.
+            </summary>
+            <param name="member"></param>
+            <returns>Returns true if obsoleted. Otherwise, false.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.MemberExtenstions.IsBrowsable(System.Reflection.MemberInfo)">
+            <summary>
+            Gets whether it is browsable.
+            </summary>
+            <param name="member"></param>
+            <returns>Returns true if browsable. Otherwise, false.</returns>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.MemberInfoWithComment`1">
+            <summary>
+            Member information and its XML comment.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.MemberInfoWithComment`1.#ctor(`0,mxProject.Tools.ClassDoc.XmlComment,mxProject.Tools.ClassDoc.ClassDocContext)">
+            <summary>
+            Create a new instance.
+            </summary>
+            <param name="member">The member information.</param>
+            <param name="comment">The XML comment.</param>
+            <param name="context">The context that manages the state of the output process for class documents.</param>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.MemberInfoWithComment`1.Context">
+            <summary>
+            Gets the context.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.MemberInfoWithComment`1.Info">
+            <summary>
+            Gets the member information.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.MemberInfoWithComment`1.Name">
+            <summary>
+            Gets the member name.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.MemberInfoWithComment`1.IsObsolete">
+            <summary>
+            Gets whether it is obsolete.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.MemberInfoWithComment`1.Scope">
+            <summary>
+            Gets the scope.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.MemberInfoWithComment`1.GetMemberScope">
+            <summary>
+            Gets the scope.
+            </summary>
+            <returns>The scope.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.MemberInfoWithComment`1.GetDeclaringTypeInfo">
+            <summary>
+            Gets information of the type for which this member is declared.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.MemberInfoWithComment`1.CreateParameterList(System.Reflection.ParameterInfo[])">
+            <summary>
+            Creates a list that stores information for the specified parameters.
+            </summary>
+            <param name="parameters">The parameters.</param>
+            <returns></returns>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.MemberInfoWithComment`1.Comment">
+            <summary>
+            Gets the XML comment.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.MemberInfoWithComment`1.InheritComment">
+            <summary>
+            Gets the inherited XML comment.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.MemberInfoWithComment`1.GetInheritComment">
+            <summary>
+            Gets the inherited XML comment.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.MemberInfoWithComment`1.GetSummaryWithInherits(mxProject.Tools.ClassDoc.XmlComment)">
+            <summary>
+            Gets the summary. Add the content about inheritance.
+            </summary>
+            <param name="inheritComment">The inherited XML comment.</param>
+            <returns></returns>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.MemberScope">
+            <summary>
+            Member scope.
+            </summary>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.MemberScope.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.MemberScope.Private">
+            <summary>
+            private.
+            </summary>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.MemberScope.Protected">
+            <summary>
+            protected.
+            </summary>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.MemberScope.ProtectedInternal">
+            <summary>
+            protected internal.
+            </summary>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.MemberScope.Internal">
+            <summary>
+            internal.
+            </summary>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.MemberScope.Public">
+            <summary>
+            public.
+            </summary>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.MemberScopeExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.MemberScopeExtensions.Format(mxProject.Tools.ClassDoc.MemberScope)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.MethodInfoExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Reflection.MethodInfo"/>.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.MethodInfoExtensions.GetScope(System.Reflection.MethodInfo)">
+            <summary>
+            Gets the scope.
+            </summary>
+            <param name="method"></param>
+            <returns>The scope.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.MethodInfoExtensions.IsExtensionMethod(System.Reflection.MethodInfo)">
+            <summary>
+            Gets whether it is an extension method.
+            </summary>
+            <param name="method"></param>
+            <returns>Return true if it is an extension method, otherwise false.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.MethodInfoExtensions.FormatToReadableSignature(System.Reflection.MethodInfo)">
+            <summary>
+            Format it to a human-readable signature, like "AddValues&lt;T&gt;(IEnumerable&lt;T&gt;)".
+            </summary>
+            <param name="method"></param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.MethodInfoExtensions.FormatToXmlCommentSignature(System.Reflection.MethodInfo)">
+            <summary>
+            Format it to a XML comment signature, like "M:SampleNamespace.SampleClass.AddValues`1(System.Collection.Generic.IEnumerable{`0})".
+            </summary>
+            <param name="method"></param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.MethodInfoExtensions.FormatToDeclaretion(System.Reflection.MethodInfo)">
+            <summary>
+            Foramt it to a declaretion statement.
+            </summary>
+            <param name="method"></param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.MethodInfoExtensions.IsRecommendOutputToDocument(System.Reflection.MethodInfo)">
+            <summary>
+            Gets whether output to document is recommended.
+            </summary>
+            <param name="method"></param>
+            <returns>Returns true if recommended. Otherwise, false.</returns>
+            <remarks>
+            <para>
+            If <see cref="P:System.Reflection.MethodBase.IsSpecialName"/> property returns true, then this method will return false.
+            </para>
+            <para>
+            If <see cref="M:mxProject.Tools.ClassDoc.MethodInfoExtensions.IsAccesibleFromOutsideAssembly(System.Reflection.MethodInfo)"/> method returns false, then this method will return false.
+            </para>
+            <para>
+            If <see cref="M:mxProject.Tools.ClassDoc.MemberExtenstions.IsBrowsable(System.Reflection.MemberInfo)"/> method returns false, then this method will return false.
+            </para>
+            <para>
+            If the type for which the spacified method is declared is delegate or enum, then this method will return false.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.MethodInfoExtensions.IsAccesibleFromOutsideAssembly(System.Reflection.MethodInfo)">
+            <summary>
+            Gets whether it can be accessed from outside the assembly.
+            </summary>
+            <param name="method"></param>
+            <returns>Returns true if public or protected. Otherwise, false.</returns>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.MethodInfoWithComment">
+            <summary>
+            Method information and its XML comment.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.MethodInfoWithComment.#ctor(System.Reflection.MethodInfo,mxProject.Tools.ClassDoc.XmlComment,mxProject.Tools.ClassDoc.ClassDocContext)">
+            <summary>
+            Create a new instance.
+            </summary>
+            <param name="method">The method information.</param>
+            <param name="comment">The XML comment.</param>
+            <param name="context">The context that manages the state of the output process for class documents.</param>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.MethodInfoWithComment.IsStatic">
+            <summary>
+            Gets a value indicating whether the method is static.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.MethodInfoWithComment.IsExtensionMethod">
+            <summary>
+            Gets whether the method is an extension method.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.MethodInfoWithComment.GetMemberScope">
+            <summary>
+            Gets the scope.
+            </summary>
+            <returns>The scope.</returns>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.MethodInfoWithComment.Declaretion">
+            <summary>
+            Gets the declaretion statement.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.MethodInfoWithComment.HasReturnValue">
+            <summary>
+            Gets whether the method returns a return value.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.MethodInfoWithComment.ReturnTypeInfo">
+            <summary>
+            Get the type information of the return value.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.MethodInfoWithComment.Parameters">
+            <summary>
+            Gets the parameters.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.MethodInfoWithComment.IsGenericMethodDefinition">
+            <summary>
+            Gets a value indicating whether this method represents a generic method definition.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.MethodInfoWithComment.GenericParameterTypes">
+            <summary>
+            Gets the generic parameters.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.MethodInfoWithComment.CreateGenericParameters">
+            <summary>
+            Create a generic parameter list.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.MethodInfoWithComment.GetInheritComment">
+            <summary>
+            Gets the inherited XML comment.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.MethodInfoWithComment.GetSummaryWithInherits">
+            <summary>
+            Gets the summary. Add the content about inheritance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.NamespaceInfo">
+            <summary>
+            Namespace information.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.NamespaceInfo.#ctor(System.String,System.Collections.Generic.IEnumerable{mxProject.Tools.ClassDoc.TypeWithComment})">
+            <summary>
+            Create a new instance.
+            </summary>
+            <param name="nameSpace">The namespace.</param>
+            <param name="types">The types defined in the namespace.</param>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.NamespaceInfo.CreateTypeList(System.String,System.Collections.Generic.IEnumerable{mxProject.Tools.ClassDoc.TypeWithComment},System.Func{mxProject.Tools.ClassDoc.TypeWithComment,System.Boolean})">
+            <summary>
+            Creates a type information list that matches the specified conditions.
+            </summary>
+            <param name="nameSpace">The namespace.</param>
+            <param name="types">The types defined in the namespace.</param>
+            <param name="filter">The method to determine if a specified type satisfies the condition.</param>
+            <returns></returns>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.NamespaceInfo.Namespace">
+            <summary>
+            Gets the namespace.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.NamespaceInfo.Classes">
+            <summary>
+            Gets the class list.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.NamespaceInfo.ValueTypes">
+            <summary>
+            Gets the valueType list.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.NamespaceInfo.Enums">
+            <summary>
+            Gets the enum list.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.NamespaceInfo.Delegates">
+            <summary>
+            Gets the delegate list.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.NamespaceInfo.Interfaces">
+            <summary>
+            Gets the interface list.
+            </summary>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.ParameterComment">
+            <summary>
+            Comment about the parameter.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.ParameterComment.#ctor(System.String,System.String[],mxProject.Tools.ClassDoc.ClassDocContext)">
+            <summary>
+            Create a new instance.
+            </summary>
+            <param name="name">The parameter name.</param>
+            <param name="descriptions">The descriptions.</param>
+            <param name="context">The context that manages the state of the output process for class documents.</param>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.ParameterComment.Empty">
+            <summary>
+            Empty instance.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.ParameterComment.Context">
+            <summary>
+            Gets the context.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.ParameterComment.Name">
+            <summary>
+            Gets the parameter name.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.ParameterComment.Descriptions">
+            <summary>
+            Gets the description.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.ParameterComment.GetDescription(System.String)">
+            <summary>
+            Gets the description.
+            </summary>
+            <param name="delimiter">The delimiter when multiple descriptions are listed.</param>
+            <returns>The description.</returns>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.ParameterInfoWithComment">
+            <summary>
+            parameter information and its XML comment.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.ParameterInfoWithComment.#ctor(System.Reflection.ParameterInfo,System.Func{mxProject.Tools.ClassDoc.ParameterComment},mxProject.Tools.ClassDoc.ClassDocContext)">
+            <summary>
+            Create a new instance.
+            </summary>
+            <param name="parameter">The parameter information.</param>
+            <param name="commentGetter">The method to get comment of parameter.</param>
+            <param name="context">The context that manages the state of the output process for class documents.</param>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.ParameterInfoWithComment.m_Context">
+            <summary>
+            Gets the context.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.ParameterInfoWithComment.Info">
+            <summary>
+            Gets the parameter information.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.ParameterInfoWithComment.Name">
+            <summary>
+            Gets the name.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.ParameterInfoWithComment.ParameterTypeInfo">
+            <summary>
+            Get the type information of the parameter.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.ParameterInfoWithComment.IO">
+            <summary>
+            Gets the direction of the parameter.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.ParameterInfoWithComment.GetDescription(System.String)">
+            <summary>
+            Get the description.
+            </summary>
+            <param name="delimiter">The delimiter when multiple descriptions are listed.</param>
+            <returns></returns>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.ParameterInfoWithComment.Comment">
+            <summary>
+            Gets the XML comment.
+            </summary>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.ParameterInfoWithComment.m_CommentGetter">
+            <summary>
+            The method to get comment of parameter.
+            </summary>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.PropertyInfoExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Reflection.PropertyInfo"/>.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.PropertyInfoExtensions.GetGettterScope(System.Reflection.PropertyInfo)">
+            <summary>
+            Gets the scope of the get accessor.
+            </summary>
+            <param name="property"></param>
+            <returns>The scope.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.PropertyInfoExtensions.GetSettterScope(System.Reflection.PropertyInfo)">
+            <summary>
+            Gets the scope of the set accessor.
+            </summary>
+            <param name="property"></param>
+            <returns>The scope.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.PropertyInfoExtensions.IsStatic(System.Reflection.PropertyInfo)">
+            <summary>
+            Gets a value indicating whether the property is static.
+            </summary>
+            <param name="property"></param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.PropertyInfoExtensions.FormatToReadableSignature(System.Reflection.PropertyInfo)">
+            <summary>
+            Format it to a human-readable name or signature, like "Item[int]".
+            </summary>
+            <param name="property"></param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.PropertyInfoExtensions.FormatToXmlCommentSignature(System.Reflection.PropertyInfo)">
+            <summary>
+            Format it to a XML comment signature, like "P:SampleNamespace.SampleClass.Item(System.Int32)".
+            </summary>
+            <param name="property"></param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.PropertyInfoExtensions.FormatToDeclaretion(System.Reflection.PropertyInfo)">
+            <summary>
+            Foramt it to a declaretion statement.
+            </summary>
+            <param name="property"></param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.PropertyInfoExtensions.IsRecommendOutputToDocument(System.Reflection.PropertyInfo)">
+            <summary>
+            Gets whether output to document is recommended.
+            </summary>
+            <param name="property"></param>
+            <returns>Returns true if recommended. Otherwise, false.</returns>
+            <remarks>
+            <para>
+            If <see cref="P:System.Reflection.PropertyInfo.IsSpecialName"/> property returns true, then this method will return false.
+            </para>
+            <para>
+            If <see cref="M:mxProject.Tools.ClassDoc.PropertyInfoExtensions.IsAccesibleFromOutsideAssembly(System.Reflection.PropertyInfo)"/> method returns false, then this method will return false.
+            </para>
+            <para>
+            If <see cref="M:mxProject.Tools.ClassDoc.MemberExtenstions.IsBrowsable(System.Reflection.MemberInfo)"/> method returns false, then this method will return false.
+            </para>
+            <para>
+            If the type for which the spacified method is declared is delegate, then this method will return false.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.PropertyInfoExtensions.IsAccesibleFromOutsideAssembly(System.Reflection.PropertyInfo)">
+            <summary>
+            Gets whether it can be accessed from outside the assembly.
+            </summary>
+            <param name="property"></param>
+            <returns>Returns true if getter or setter is accessible. Otherwise, false.</returns>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.PropertyInfoWithComment">
+            <summary>
+            Property information and its XML comment.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.PropertyInfoWithComment.#ctor(System.Reflection.PropertyInfo,mxProject.Tools.ClassDoc.XmlComment,mxProject.Tools.ClassDoc.ClassDocContext)">
+            <summary>
+            Create a new instance.
+            </summary>
+            <param name="prop">The property information.</param>
+            <param name="comment">The XML comment.</param>
+            <param name="context">The context that manages the state of the output process for class documents.</param>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.PropertyInfoWithComment.IsStatic">
+            <summary>
+            Gets a value indicating whether the property is static.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.PropertyInfoWithComment.GetMemberScope">
+            <summary>
+            Gets the scope. If the getter and the setter have different scopes, the wider scope is returned.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.PropertyInfoWithComment.SetterScope">
+            <summary>
+            Gets the scope of the set accessor.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.PropertyInfoWithComment.GetterScope">
+            <summary>
+            Gets the scope of the get accessor.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.PropertyInfoWithComment.PropertyTypeInfo">
+            <summary>
+            Get the type information of the property.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.PropertyInfoWithComment.Declaretion">
+            <summary>
+            Gets the declaretion statement.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.PropertyInfoWithComment.Parameters">
+            <summary>
+            Gets the parameters.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.PropertyInfoWithComment.GetInheritComment">
+            <summary>
+            Gets the inherited XML comment.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.PropertyInfoWithComment.GetSummaryWithInherits">
+            <summary>
+            Gets the summary. Add the content about inheritance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.TypeExtenstions">
+            <summary>
+            Extension methods for <see cref="T:System.Type"/>.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeExtenstions.IsDelegate(System.Type)">
+            <summary>
+            Gets a value indicating whether the current System.Type represents a delegate.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeExtenstions.IsClassExcludeDelegateAndInterface(System.Type)">
+            <summary>
+            Gets a value indicating whether the type is a class, exclude interfaces and delegates.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeExtenstions.FormatToReadableTypeName(System.Type,System.Boolean)">
+            <summary>
+            Format it to a human-readable name, like "SampleClass&lt;T&gt;".
+            </summary>
+            <param name="type"></param>
+            <param name="isFullName">A value whether to get the full type name with namespace.</param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeExtenstions.FormatToReadableTypeNameCore(System.Type,System.Boolean,System.Boolean)">
+            <summary>
+            Format it to a human-readable name, like "SampleClass&lt;T&gt;".
+            </summary>
+            <param name="type"></param>
+            <param name="isFullName">A value whether to get the full type name with namespace.</param>
+            <param name="inProsessingNesting">A value whether it is processing for a nested type.</param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeExtenstions.FormatToXmlCommentTypeName(System.Type)">
+            <summary>
+            Format it to a type name in XML comment signature, like "SampleNamespace.SampleClass`1".
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeExtenstions.FormatToXmlCommentParameterTypeName(System.Type,System.Type[],System.Type[])">
+            <summary>
+            Format it to a parameter type name in XML comment signature, like "System.Generic.Collection.IDictionary{`0,``0}".
+            </summary>
+            <param name="type"></param>
+            <param name="typeGenericParameters">The generic arguments of the type in which the specified method is declared.</param>
+            <param name="methodGenericParameters">The generic arguments of the specified method.</param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeExtenstions.FormatToXmlCommentTypeNameCore(System.Type,System.Type[],System.Type[],System.Boolean,System.Boolean)">
+            <summary>
+            Format it to a parameter type name in XML comment signature, like "System.Generic.Collection.IDictionary{`0,``0}".
+            </summary>
+            <param name="type"></param>
+            <param name="typeGenericParameters">The generic arguments of the type in which the specified method is declared.</param>
+            <param name="methodGenericParameters">The generic arguments of the specified method.</param>
+            <param name="isFullName">A value whether to get the full type name with namespace.</param>
+            <param name="inProsessingNesting">A value whether it is processing for a nested type.</param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeExtenstions.EnumerateBaseTypes(System.Type)">
+            <summary>
+            Go up the inheritance tree and enumerate the base types.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeExtenstions.IsRecommendOutputToDocument(System.Type)">
+            <summary>
+            Gets whether output to document is recommended.
+            </summary>
+            <param name="method"></param>
+            <returns>Returns true if recommended. Otherwise, false.</returns>
+            <remarks>
+            <para>
+            If <see cref="P:System.Reflection.MethodBase.IsSpecialName"/> property returns true, then this method will return false.
+            </para>
+            <para>
+            If <see cref="M:mxProject.Tools.ClassDoc.TypeExtenstions.IsAccesibleFromOutsideAssembly(System.Type)"/> method returns false, then this method will return false.
+            </para>
+            <para>
+            If <see cref="M:mxProject.Tools.ClassDoc.MemberExtenstions.IsBrowsable(System.Reflection.MemberInfo)"/> method returns false, then this method will return false.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeExtenstions.IsAccesibleFromOutsideAssembly(System.Type)">
+            <summary>
+            Gets whether it can be accessed from outside the assembly.
+            </summary>
+            <param name="type"></param>
+            <returns>Returns true if public or nested public. Otherwise, false.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeExtenstions.IsMatchNamespace(System.Type,System.String)">
+            <summary>
+            Gets whether the type namespace matches the specified namespace.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="regexPattern">The regular expression pattern.</param>
+            <returns>Return true if match, otherwize false.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeExtenstions.IsMatchNamespace(System.Type,System.Text.RegularExpressions.Regex)">
+            <summary>
+            Gets whether the type namespace matches the specified namespace.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="regex">The regular expression.</param>
+            <returns>Return true if match, otherwize false.</returns>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.TypeLoader">
+            <summary>
+            Loads type information.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeLoader.LoadTypes(System.String,mxProject.Tools.ClassDoc.ClassDocContext,System.String)">
+            <summary>
+            Loads the types defined in the specified assembly.
+            </summary>
+            <param name="dllPath">The assembly file path.</param>
+            <param name="context">The context that manages the state of the output process for class documents.</param>
+            <param name="nameSpace">The namespace to load.</param>
+            <returns>The type information.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeLoader.LoadTypes(System.Collections.Generic.IEnumerable{System.String},mxProject.Tools.ClassDoc.ClassDocContext,System.String)">
+            <summary>
+            Loads the types defined in the specified assemblies.
+            </summary>
+            <param name="dllPaths">The assembly file path.</param>
+            <param name="context">The context that manages the state of the output process for class documents.</param>
+            <param name="nameSpace">The namespace to load.</param>
+            <returns>The type information.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeLoader.EnumerateTypes(System.String,mxProject.Tools.ClassDoc.ClassDocContext,System.String)">
+            <summary>
+            Loads the types defined in the specified assembly.
+            </summary>
+            <param name="dllPath">The assembly file path.</param>
+            <param name="context">The context that manages the state of the output process for class documents.</param>
+            <param name="nameSpace">The namespace to load.</param>
+            <returns>The type information.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeLoader.EnumerateTypes(System.Reflection.Assembly,System.Func{System.Type,System.Boolean})">
+            <summary>
+            Enumerates the types defined in the specified assembly.
+            </summary>
+            <param name="assembly">The assembly.</param>
+            <param name="filter">The method to determine if a type should be enumerated.</param>
+            <returns>The enumerator.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeLoader.TryGetType(System.String,System.Type@)">
+            <summary>
+            Gets the type with the specified name.
+            </summary>
+            <param name="typeName">The type name.</param>
+            <param name="type">The type found.</param>
+            <returns>Return true if got. Otherwise, false.</returns>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.TypeParameterWithComment">
+            <summary>
+            Type parameter and its XML comment.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeParameterWithComment.#ctor(System.Type,System.Func{mxProject.Tools.ClassDoc.ParameterComment},mxProject.Tools.ClassDoc.ClassDocContext)">
+            <summary>
+            Creates a new instance.
+            </summary>
+            <param name="parameterType">The generic parameter type.</param>
+            <param name="commentGetter">The method to get comment of parameter.</param>
+            <param name="context">The context that manages the state of the output process for class documents.</param>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeParameterWithComment.ParameterType">
+            <summary>
+            Gets the generic parameter type.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeParameterWithComment.Context">
+            <summary>
+            Gets the context.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeParameterWithComment.Name">
+            <summary>
+            Gets the name.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeParameterWithComment.Attributes">
+            <summary>
+            Gets the parameter attributes.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeParameterWithComment.GetConstraintTypes">
+            <summary>
+            Gets the constraint types.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeParameterWithComment.Comment">
+            <summary>
+            Gets the XML comment.
+            </summary>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.TypeParameterWithComment.m_CommentGetter">
+            <summary>
+            The method to get comment of parameter.
+            </summary>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.TypeWithComment">
+            <summary>
+            Type information and its XML comment.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeWithComment.#ctor(System.Type,System.Linq.ILookup{System.String,mxProject.Tools.ClassDoc.XmlComment},mxProject.Tools.ClassDoc.ClassDocContext)">
+            <summary>
+            Create a new instance.
+            </summary>
+            <param name="type">The type information.</param>
+            <param name="commentLookup">The XML comment of the type and the members.</param>
+            <param name="context">The context that manages the state of the output process for class documents.</param>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.Context">
+            <summary>
+            Gets the context.
+            </summary>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.TypeWithComment.m_CommentLookup">
+            <summary>
+            The XML comment of the type and the members.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.Info">
+            <summary>
+            Gets the type information.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.IsObsolete">
+            <summary>
+            Gets whether it is obsolete.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.Comment">
+            <summary>
+            Gets the XML comment.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.Namespace">
+            <summary>
+            Gets the namespace.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.FullName">
+            <summary>
+            Gets the fully qualified name of the type.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.Name">
+            <summary>
+            Gets the name.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeWithComment.EnumerateBaseTypes">
+            <summary>
+            Goes up the inheritance tree and enumerates the base types.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.HasImplementedInterfaces">
+            <summary>
+            Gets whether it implements the interface.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeWithComment.EnumerateImplementedInterfaces">
+            <summary>
+            Enumerates the implemented interface types.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.IsClass">
+            <summary>
+            Gets a value indicating whether the type is a class, exclude interface and delegate.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.IsValueType">
+            <summary>
+            Gets a value indicating whether the type is a valyeType, exclude enumeration.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.IsEnum">
+            <summary>
+            Gets a value indicating whether the type is an enumeration.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.IsDelegate">
+            <summary>
+            Gets a value indicating whether the type is a delegate.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.IsInterface">
+            <summary>
+            Gets a value indicating whether the type is an interface.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.IsGenericTypeDefinition">
+            <summary>
+            Gets a value indicating whether this type represents a generic type definition.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.GenericParameterTypes">
+            <summary>
+            Gets the generic parameters.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeWithComment.CreateGenericParameters">
+            <summary>
+            Creates a generic parameter list.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeWithComment.GetGenericParameterComment(System.Type)">
+            <summary>
+            Gets the comment of the specified parameter type.
+            </summary>
+            <param name="parameterType">The parameter type.</param>
+            <returns></returns>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.Constructors">
+            <summary>
+            Gets the constructors.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeWithComment.CreateConstructors">
+            <summary>
+            Creates a list that stores information for the constructors.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.Methods">
+            <summary>
+            Gets the methods.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.HasInstanceMethod">
+            <summary>
+            Gets whether the instance method exists.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.HasStaticMethod">
+            <summary>
+            Gets whether the static method exists.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeWithComment.CreateMethodList">
+            <summary>
+            Creates a list that stores information for the methods.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.Properties">
+            <summary>
+            Gets the properties.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.HasInstanceProperty">
+            <summary>
+            Gets whether the instance property exists.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.HasStaticProperty">
+            <summary>
+            Gets whether the static property exists.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeWithComment.CreatePropertyList">
+            <summary>
+            Creates a list that stores information for the properties.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.Fields">
+            <summary>
+            Gets the fields.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.HasInstanceField">
+            <summary>
+            Gets whether the instance field exists.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.HasStaticField">
+            <summary>
+            Gets whether the static field exists.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeWithComment.CreateFieldList">
+            <summary>
+            Creates a list that stores information for the fields.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.Events">
+            <summary>
+            Gets the events.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.HasInstanceEvent">
+            <summary>
+            Gets whether the instance field exists.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.HasStaticEvent">
+            <summary>
+            Gets whether the static field exists.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeWithComment.CreateEventList">
+            <summary>
+            Creates a list that stores information for the events.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.DelegateMethodInfo">
+            <summary>
+            Gets the delegate method information.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeWithComment.CreateDelegateMethodInfo">
+            <summary>
+            Creates a delegate method information.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.DelegateParameters">
+            <summary>
+            Gets the delegate parameters.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.TypeWithComment.HasDelegateReturnValue">
+            <summary>
+            Gets whether the delegate returns a return value.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.TypeWithComment.GetDelegateDeclaretion">
+            <summary>
+            Gets the declaretion statement.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.XmlComment">
+            <summary>
+            XML comment.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.XmlComment.#ctor(mxProject.Tools.ClassDoc.ClassDocContext)">
+            <summary>
+            Create a new instance.
+            </summary>
+            <param name="context">The context that manages the state of the output process for class documents.</param>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.XmlComment.Context">
+            <summary>
+            Gets the context.
+            </summary>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.XmlComment.Empty">
+            <summary>
+            Empty instance.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.XmlComment.IsEmpty">
+            <summary>
+            Gets whether it is an empty instance.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.XmlComment.SignatureName">
+            <summary>
+            Gets the signature.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.XmlComment.Signature">
+            <summary>
+            Gets the parsed signature.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.XmlComment.IsInherit">
+            <summary>
+            Gets whether to inherit the comment of the inheritance source.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.XmlComment.Kind">
+            <summary>
+            Gets the kind.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.XmlComment.TypeName">
+            <summary>
+            Gets the type name.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.XmlComment.MemberName">
+            <summary>
+            Gets the member name.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.XmlComment.MethodArguments">
+            <summary>
+            Gets the method arguments.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.XmlComment.Summary">
+            <summary>
+            Gets the summary.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.XmlComment.Remarks">
+            <summary>
+            Gets the remarks.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.XmlComment.RemarkLines">
+            <summary>
+            Enumerates remarks by line.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.XmlComment.Parameters">
+            <summary>
+            Gets the parameters.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.XmlComment.TypeParameters">
+            <summary>
+            Gets the type parameters.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.XmlComment.Returns">
+            <summary>
+            Gets the return value.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.XmlComment.Exceptions">
+            <summary>
+            Gets the exceptions.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.XmlComment.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.XmlCommentKind">
+            <summary>
+            Kind of XML comment signature.
+            </summary>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.XmlCommentKind.Unknown">
+            <summary>
+            unknown.
+            </summary>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.XmlCommentKind.Type">
+            <summary>
+            Type.
+            </summary>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.XmlCommentKind.Field">
+            <summary>
+            Field.
+            </summary>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.XmlCommentKind.Property">
+            <summary>
+            Property.
+            </summary>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.XmlCommentKind.Method">
+            <summary>
+            Method.
+            </summary>
+        </member>
+        <member name="F:mxProject.Tools.ClassDoc.XmlCommentKind.Event">
+            <summary>
+            Event.
+            </summary>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.XmlCommentReader">
+            <summary>
+            XML comment reader.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.XmlCommentReader.ReadXmlComments(System.Xml.Linq.XDocument,mxProject.Tools.ClassDoc.ClassDocContext,System.String)">
+            <summary>
+            Reads XML comments from the specified XML document.
+            </summary>
+            <param name="xDocument">The XML document.</param>
+            <param name="context">The context that manages the state of the output process for class documents.</param>
+            <param name="nameSpace">The namespace to read.</param>
+            <returns>An Enumerator.</returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.XmlCommentReader.FormatTextElement(System.Collections.Generic.IEnumerable{System.Xml.Linq.XElement})">
+            <summary>
+            Formats the specified text elements.
+            </summary>
+            <param name="elements">The elements</param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.XmlCommentReader.FormatTextElement(System.Xml.Linq.XElement)">
+            <summary>
+            Formats the specified text element.
+            </summary>
+            <param name="element">The element</param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.XmlCommentReader.FormatTextElement(System.Xml.Linq.XElement,Cysharp.Text.Utf16ValueStringBuilder@)">
+            <summary>
+            Formats the specified text element.
+            </summary>
+            <param name="element">The element</param>
+            <param name="sb">The string buffer.</param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.XmlCommentReader.FormatString(System.String)">
+            <summary>
+            Formats the specified text.
+            </summary>
+            <param name="text">The text.</param>
+            <returns></returns>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.XmlCommentSignature">
+            <summary>
+            XML comment signature.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.XmlCommentSignature.#ctor(mxProject.Tools.ClassDoc.XmlCommentKind,System.String,System.String,System.String)">
+            <summary>
+            Create a new instance/
+            </summary>
+            <param name="kind">The kind.</param>
+            <param name="typeName">The type name.</param>
+            <param name="memberName">The member name.</param>
+            <param name="methodArguments">The method arguments.</param>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.XmlCommentSignature.Kind">
+            <summary>
+            Gets the kind.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.XmlCommentSignature.TypeName">
+            <summary>
+            Gets the type name.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.XmlCommentSignature.MemberName">
+            <summary>
+            Gets the member name.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.XmlCommentSignature.MethodArguments">
+            <summary>
+            Gets the method arguments.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.XmlCommentSignature.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.XmlCommentSignature.Equals(mxProject.Tools.ClassDoc.XmlCommentSignature)">
+            <inheritdoc/>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.XmlCommentSignature.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.XmlCommentSignature.TryParse(System.String,mxProject.Tools.ClassDoc.XmlCommentSignature@)">
+            <summary>
+            Parses the specified signature.
+            </summary>
+            <param name="signatureName">signature string.</param>
+            <param name="signature">A parsed signature.</param>
+            <returns>Returns true if parsed. Otherwise, false.</returns>
+        </member>
+        <member name="T:mxProject.Tools.MessageResource">
+            <summary>
+              ローカライズされた文字列などを検索するための、厳密に型指定されたリソース クラスです。
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.MessageResource.ResourceManager">
+            <summary>
+              このクラスで使用されているキャッシュされた ResourceManager インスタンスを返します。
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.MessageResource.Culture">
+            <summary>
+              すべてについて、現在のスレッドの CurrentUICulture プロパティをオーバーライドします
+              現在のスレッドの CurrentUICulture プロパティをオーバーライドします。
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.MessageResource.InheritFrom">
+            <summary>
+              Inherited from {0}. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.MessageResource.NotFoundInheritComment">
+            <summary>
+              Although &quot;inheritdoc&quot; is specified, the comment of the inheritance source cannot be obtained. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+    </members>
+</doc>

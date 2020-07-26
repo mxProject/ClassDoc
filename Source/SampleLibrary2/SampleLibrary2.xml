@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SampleLibrary2</name>
+    </assembly>
+    <members>
+        <member name="T:SampleLibrary.SampleClassExtensions">
+            <summary>
+            Extension methods for <see cref="T:SampleLibrary.SampleClass"/>.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.SampleClassExtensions.ExtensionAction(SampleLibrary.SampleClass,System.Boolean,System.DateTime)">
+            <summary>
+            An extension action.
+            </summary>
+            <param name="sample">The instance.</param>
+            <param name="arg1">1st argument.</param>
+            <param name="arg2">2nd argument.</param>
+        </member>
+        <member name="M:SampleLibrary.SampleClassExtensions.ExtensionFunc(SampleLibrary.SampleClass,System.Boolean,System.DateTime)">
+            <summary>
+            An extension action.
+            </summary>
+            <param name="sample">The instance.</param>
+            <param name="arg1">1st argument.</param>
+            <param name="arg2">2nd argument.</param>
+            <returns>A return value.</returns>
+        </member>
+    </members>
+</doc>

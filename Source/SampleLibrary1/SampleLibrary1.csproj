@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>SampleLibrary</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>E:\Data\Program\Source\GitHub\mxProject\Working\ClassDocumentGenerator\SampleLibrary1\SampleLibrary1.xml</DocumentationFile>
+  </PropertyGroup>
+
+</Project>

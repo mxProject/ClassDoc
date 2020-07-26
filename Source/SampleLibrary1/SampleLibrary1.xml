@@ -1,0 +1,1293 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SampleLibrary1</name>
+    </assembly>
+    <members>
+        <member name="T:SampleLibrary.CommentSample`1">
+            <summary>
+            XML comment sample.
+            </summary>
+            <typeparam name="TItem">The type of the value.</typeparam>
+            <remarks>
+            <para>
+            First paragraph of remarks.
+            </para>
+            <para>
+            Second paragraph of remarks.
+            </para>
+            <para>
+            Link to type : <see cref="T:SampleLibrary.SampleClass"/>
+            </para>
+            <para>
+            Link to type : <see cref="T:SampleLibrary.SampleClass">see SampleClass</see>
+            </para>
+            <para>
+            Link to type : <seealso cref="T:SampleLibrary.SampleSubClass"/>
+            </para>
+            <para>
+            Link to type : <seealso cref="T:SampleLibrary.SampleSubClass">seealso SampleSubClass</seealso>
+            </para>
+            <para>
+            Link to method : <see cref="M:SampleLibrary.SampleClass.Action(System.Byte)"/>
+            </para>
+            <para>
+            Link to method : <see cref="M:SampleLibrary.SampleClass.Action(System.Byte)">see SampleClass.Action</see>
+            </para>
+            <para>
+            Link to method : <seealso cref="M:SampleLibrary.SampleSubClass.SubClassAction(System.Int64)"/>
+            </para>
+            <para>
+            Link to method : <seealso cref="M:SampleLibrary.SampleSubClass.SubClassAction(System.Int64)">seealso SampleSubClass.SubClassAction</seealso>
+            </para>
+            <para>
+            Link to property : <see cref="P:SampleLibrary.SampleClass.Property"/>
+            </para>
+            <para>
+            Link to property : <see cref="P:SampleLibrary.SampleClass.Property">see SampleClass.Property</see>
+            </para>
+            <para>
+            Link to property : <seealso cref="P:SampleLibrary.SampleSubClass.SubClassProperty"/>
+            </para>
+            <para>
+            Link to property : <seealso cref="P:SampleLibrary.SampleSubClass.SubClassProperty">seealso SampleSubClass.SubClassProperty</seealso>
+            </para>
+            <para>
+            Link to field : <see cref="F:SampleLibrary.SampleClass.Field"/>
+            </para>
+            <para>
+            Link to field : <see cref="F:SampleLibrary.SampleClass.Field">see SampleClass.Field</see>
+            </para>
+            <para>
+            Link to field : <seealso cref="F:SampleLibrary.SampleSubClass.SubClassField"/>
+            </para>
+            <para>
+            Link to field : <seealso cref="F:SampleLibrary.SampleSubClass.SubClassField">seealso SampleSubClass.SubClassField</seealso>
+            </para>
+            <para>
+            Link to event : <see cref="E:SampleLibrary.SampleClass.Event"/>
+            </para>
+            <para>
+            Link to event : <see cref="E:SampleLibrary.SampleClass.Event">see SampleClass.Event</see>
+            </para>
+            <para>
+            Link to event : <seealso cref="E:SampleLibrary.SampleSubClass.SubClassEvent"/>
+            </para>
+            <para>
+            Link to event : <seealso cref="E:SampleLibrary.SampleSubClass.SubClassEvent">seealso SampleSubClass.SubClassEvent</seealso>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SampleLibrary.CommentSample`1.GetValue(System.String)">
+            <summary>
+            Gets the value corresponding to the specified name.
+            </summary>
+            <param name="name">The name.</param>
+            <returns>A value corresponding to the specified name.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="name"/> is null.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            This instance is already disposed.
+            </exception>
+        </member>
+        <member name="M:SampleLibrary.CommentSample`1.GetConvertedValue``1(System.String,System.Converter{`0,``0})">
+            <summary>
+            Gets the value corresponding to the specified name.
+            </summary>
+            <typeparam name="TResult">The type of converted value.</typeparam>
+            <param name="name">The name.</param>
+            <param name="converter">The value converter.</param>
+            <returns>A converted value.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="name"/> is null.
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="converter"/> is null.
+            </exception>
+        </member>
+        <member name="T:SampleLibrary.GenericClass`1">
+            <summary>
+            Generic class with one type parameter declared.
+            </summary>
+            <typeparam name="T1">1st type parameter.</typeparam>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`1.#ctor">
+            <summary>
+            ctor.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`1.Action(`0)">
+            <summary>
+            A method that takes the type parameter.
+            </summary>
+            <param name="t1">argument.</param>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`1.Func">
+            <summary>
+            A method that returns the type parameter.
+            </summary>
+            <returns>Return value.</returns>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`1.GenericAction``1(`0,``0)">
+            <summary>
+            A generic method that takes the type parameter and the type parameter of this method.
+            </summary>
+            <typeparam name="M1">1st type parameter of this method.</typeparam>
+            <param name="t1">1st argument.</param>
+            <param name="m1">2nd argument.</param>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`1.GenericAction``1(``0,`0)">
+            <summary>
+            A generic method that takes the type parameter and the type parameter of this method.
+            </summary>
+            <typeparam name="M1">1st type parameter of this method.</typeparam>
+            <param name="m1">1st argument.</param>
+            <param name="t1">2nd argument.</param>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`1.GenericFunc``1(`0)">
+            <summary>
+            A generic method that returns the type parameter of this method.
+            </summary>
+            <typeparam name="M1">1st type parameter of this method.</typeparam>
+            <param name="t1">argument.</param>
+            <returns>Return value.</returns>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`1.GenericFunc``1(``0)">
+            <summary>
+            A generic method that takes the type parameter of this method, and returns the type parameter.
+            </summary>
+            <typeparam name="M1">1st type parameter of this method.</typeparam>
+            <param name="m1">argument.</param>
+            <returns>Return value.</returns>
+        </member>
+        <member name="T:SampleLibrary.GenericClass`1.NestedClass">
+            <summary>
+            Nested class.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`1.NestedClass.Action(`0)">
+            <summary>
+            A method that takes the type parameter.
+            </summary>
+            <param name="t1">argument.</param>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`1.NestedClass.GenericAction``1(`0,``0)">
+            <summary>
+            A generic method that takes the type parameter and the type parameter of this method.
+            </summary>
+            <typeparam name="M1">1st type parameter of this method.</typeparam>
+            <param name="t1">1st argument.</param>
+            <param name="m1">2nd argument.</param>
+        </member>
+        <member name="T:SampleLibrary.GenericClass`1.GenericNestedClass`1">
+            <summary>
+            Nested generic class.
+            </summary>
+            <typeparam name="N1">1st type parameter.</typeparam>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`1.GenericNestedClass`1.Action(`0,`1)">
+            <summary>
+            A method that takes the type parameter.
+            </summary>
+            <param name="t1">1st argument.</param>
+            <param name="n1">2nd argument.</param>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`1.GenericNestedClass`1.GenericAction``1(`0,`1,``0)">
+            <summary>
+            A generic method that takes the type parameter and the type parameter of this method.
+            </summary>
+            <typeparam name="M1">1st type parameter of this method.</typeparam>
+            <param name="t1">1st argument.</param>
+            <param name="n1">2nd argument.</param>
+            <param name="m1">3rd argument.</param>
+        </member>
+        <member name="T:SampleLibrary.GenericClass`2">
+            <summary>
+            Generic class with two type parameters declared.
+            </summary>
+            <typeparam name="T1">1st type parameter.</typeparam>
+            <typeparam name="T2">2nd type parameter.</typeparam>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`2.#ctor">
+            <summary>
+            ctor.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`2.Action(`0)">
+            <summary>
+            A method that takes the type parameter, <typeparamref name="T1"/>.
+            </summary>
+            <param name="t1">argument.</param>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`2.Action(`1)">
+            <summary>
+            A method that takes the type parameter, <typeparamref name="T2"/>.
+            </summary>
+            <param name="t2">argument.</param>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`2.Action(`0,`1)">
+            <summary>
+            A method that takes the type parameter, <typeparamref name="T1"/> and <typeparamref name="T2"/>.
+            </summary>
+            <param name="t1">1st argument.</param>
+            <param name="t2">2nd argument.</param>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`2.Func(`0)">
+            <summary>
+            A method that returns the type parameter, <typeparamref name="T1"/>.
+            </summary>
+            <param name="t1">argument.</param>
+            <returns>Return value.</returns>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`2.Func(`1)">
+            <summary>
+            A method that returns the type parameter, <typeparamref name="T2"/>.
+            </summary>
+            <param name="t2">argument.</param>
+            <returns>Return value.</returns>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`2.GenericAction``1(`0,`1,``0)">
+            <summary>
+            A generic method that takes the type parameter and the type parameter of this method.
+            </summary>
+            <typeparam name="M1">1st type parameter of this method.</typeparam>
+            <param name="t1">1st argument.</param>
+            <param name="t2">2nd argument.</param>
+            <param name="m1">3rd argument.</param>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`2.GenericAction``1(`0,``0,`1)">
+            <summary>
+            A generic method that takes the type parameter and the type parameter of this method.
+            </summary>
+            <typeparam name="M1">1st type parameter of this method.</typeparam>
+            <param name="t1">1st argument.</param>
+            <param name="m1">2nd argument.</param>
+            <param name="t2">3rd argument.</param>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`2.GenericAction``2(`0,`1,``0,``1)">
+            <summary>
+            A generic method that takes the type parameter and the type parameter of this method.
+            </summary>
+            <typeparam name="M1">1st type parameter of this method.</typeparam>
+            <typeparam name="M2">2nd type parameter of this method.</typeparam>
+            <param name="t1">1st argument.</param>
+            <param name="t2">2nd argument.</param>
+            <param name="m1">3rd argument.</param>
+            <param name="m2">4th argument.</param>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`2.GenericAction``2(`0,``0,`1,``1)">
+            <summary>
+            A generic method that takes the type parameter and the type parameter of this method.
+            </summary>
+            <typeparam name="M1">1st type parameter of this method.</typeparam>
+            <typeparam name="M2">2nd type parameter of this method.</typeparam>
+            <param name="t1">1st argument.</param>
+            <param name="m1">2nd argument.</param>
+            <param name="t2">3rd argument.</param>
+            <param name="m2">4th argument.</param>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`2.GenericFunc``1(`0,`1)">
+            <summary>
+            A generic method that returns the type parameter of this method.
+            </summary>
+            <typeparam name="M1">1st type parameter of this method.</typeparam>
+            <param name="t1">1st argument.</param>
+            <param name="t2">2nd argument.</param>
+            <returns>Return value.</returns>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`2.GenericFunc``1(``0,`1)">
+            <summary>
+            A generic method that takes the type parameter of this method, and returns the type parameter.
+            </summary>
+            <typeparam name="M1">1st type parameter of this method.</typeparam>
+            <param name="m1">1st argument.</param>
+            <param name="t2">2nd argument.</param>
+            <returns>Return value.</returns>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`2.GenericFunc``2(`0,`1,``0)">
+            <summary>
+            A generic method that returns the type parameter of this method.
+            </summary>
+            <typeparam name="M1">1st type parameter of this method.</typeparam>
+            <typeparam name="M2">2nd type parameter of this method.</typeparam>
+            <param name="t1">1st argument.</param>
+            <param name="t2">2nd argument.</param>
+            <param name="m1">3rd argument.</param>
+            <returns>Return value.</returns>
+        </member>
+        <member name="T:SampleLibrary.GenericClass`2.NestedClass">
+            <summary>
+            Nested class.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`2.NestedClass.Action(`0,`1)">
+            <summary>
+            A method that takes the type parameter.
+            </summary>
+            <param name="t1">1st argument.</param>
+            <param name="t2">2nd argument.</param>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`2.NestedClass.GenericAction``2(`0,``0,`1,``1)">
+            <summary>
+            A generic method that takes the type parameter and the type parameter of this method.
+            </summary>
+            <typeparam name="M1">1st type parameter of this method.</typeparam>
+            <typeparam name="M2">2st type parameter of this method.</typeparam>
+            <param name="t1">1st argument.</param>
+            <param name="m1">2nd argument.</param>
+            <param name="t2">3rd argument.</param>
+            <param name="m2">4th argument.</param>
+        </member>
+        <member name="T:SampleLibrary.GenericClass`2.GenericNestedClass`2">
+            <summary>
+            Nested generic class.
+            </summary>
+            <typeparam name="N1">1st type parameter.</typeparam>
+            <typeparam name="N2">2nd type parameter.</typeparam>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`2.GenericNestedClass`2.Action(`0,`2,`1,`3)">
+            <summary>
+            A method that takes the type parameter.
+            </summary>
+            <param name="t1">1st argument.</param>
+            <param name="n1">2nd argument.</param>
+            <param name="t2">3rd argument.</param>
+            <param name="n2">4th argument.</param>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`2.GenericNestedClass`2.GenericAction``2(`0,`2,``0,`1,`3,``1)">
+            <summary>
+            A generic method that takes the type parameter and the type parameter of this method.
+            </summary>
+            <typeparam name="M1">1st type parameter of this method.</typeparam>
+            <typeparam name="M2">2st type parameter of this method.</typeparam>
+            <param name="t1">1st argument.</param>
+            <param name="n1">2nd argument.</param>
+            <param name="m1">3rd argument.</param>
+            <param name="t2">4th argument.</param>
+            <param name="m2">5th argument.</param>
+            <param name="n2">6th argument.</param>
+        </member>
+        <member name="T:SampleLibrary.GenericClass`3">
+            <summary>
+            Generic class with three type parameters declared.
+            </summary>
+            <typeparam name="T1">1st type parameter.</typeparam>
+            <typeparam name="T2">2nd type parameter.</typeparam>
+            <typeparam name="T3">3rd type parameter.</typeparam>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`3.#ctor">
+            <summary>
+            ctor.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`3.Action(`0,`1,`2)">
+            <summary>
+            A method that takes the type parameter, <typeparamref name="T1"/> and <typeparamref name="T2"/> and <typeparamref name="T3"/>.
+            </summary>
+            <param name="t1">1st argument.</param>
+            <param name="t2">2nd argument.</param>
+            <param name="t3">3rd argument.</param>
+        </member>
+        <member name="M:SampleLibrary.GenericClass`3.Func(`0,`1)">
+            <summary>
+            A method that returns the type parameter, <typeparamref name="T3"/>.
+            </summary>
+            <param name="t1">1st argument.</param>
+            <param name="t2">2nd argument.</param>
+            <returns>Return value.</returns>
+        </member>
+        <member name="T:SampleLibrary.IndexerSample">
+            <summary>
+            Indexer sample.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.IndexerSample.Item(System.Int32)">
+            <summary>
+            An indexer that takes an integer value as an argument.
+            </summary>
+            <param name="index">The index.</param>
+            <returns></returns>
+        </member>
+        <member name="P:SampleLibrary.IndexerSample.Item(System.String)">
+            <summary>
+            An indexer that takes a string value as an argument.
+            </summary>
+            <param name="name">The name.</param>
+            <returns></returns>
+        </member>
+        <member name="P:SampleLibrary.IndexerSample.Item(System.Int32,System.Int32)">
+            <summary>
+            An indexer that takes x and y coordinates as arguments
+            </summary>
+            <param name="x">The x coordinate.</param>
+            <param name="y">The y coordinate.</param>
+            <returns></returns>
+        </member>
+        <member name="P:SampleLibrary.IndexerSample.Item(System.ValueTuple{System.Int32,System.Int32})">
+            <summary>
+            An indexer that takes a tuple as arguments
+            </summary>
+            <param name="coordinates">The coordinates.</param>
+            <returns></returns>
+        </member>
+        <member name="T:SampleLibrary.InternalClass">
+            <summary>
+            internal class.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.InternalClass.#ctor(System.Boolean)">
+            <summary>
+            A private constructor.
+            </summary>
+            <param name="arg">argument.</param>
+        </member>
+        <member name="M:SampleLibrary.InternalClass.#ctor(System.Byte)">
+            <summary>
+            A protected constructor.
+            </summary>
+            <param name="arg">argument.</param>
+        </member>
+        <member name="M:SampleLibrary.InternalClass.#ctor(System.Int16)">
+            <summary>
+            A protected internal constructor.
+            </summary>
+            <param name="arg">argument.</param>
+        </member>
+        <member name="M:SampleLibrary.InternalClass.#ctor(System.Int32)">
+            <summary>
+            An internal constructor.
+            </summary>
+            <param name="arg">argument.</param>
+        </member>
+        <member name="M:SampleLibrary.InternalClass.#ctor(System.Int64)">
+            <summary>
+            A public constructor.
+            </summary>
+            <param name="arg">argument.</param>
+        </member>
+        <member name="P:SampleLibrary.InternalClass.PrivateProperty">
+            <summary>
+            A private property.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.InternalClass.ProtectedProperty">
+            <summary>
+            A protected property.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.InternalClass.ProtectedInternalProperty">
+            <summary>
+            A protected internal property.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.InternalClass.InternalProperty">
+            <summary>
+            An internal property.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.InternalClass.PublicProperty">
+            <summary>
+            A public property.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.InternalClass.PrivateField">
+            <summary>
+            A private field.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.InternalClass.ProtectedField">
+            <summary>
+            A protected field.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.InternalClass.ProtectedInternalField">
+            <summary>
+            A protected internal field.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.InternalClass.InternalField">
+            <summary>
+            An internal field.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.InternalClass.PublicField">
+            <summary>
+            A public field.
+            </summary>
+        </member>
+        <member name="E:SampleLibrary.InternalClass.PrivateEvent">
+            <summary>
+            A private event.
+            </summary>
+        </member>
+        <member name="E:SampleLibrary.InternalClass.ProtectedEvent">
+            <summary>
+            A protected event.
+            </summary>
+        </member>
+        <member name="E:SampleLibrary.InternalClass.ProtectedInternalEvent">
+            <summary>
+            A protected internal event.
+            </summary>
+        </member>
+        <member name="E:SampleLibrary.InternalClass.InternalEvent">
+            <summary>
+            An internal event.
+            </summary>
+        </member>
+        <member name="E:SampleLibrary.InternalClass.PublicEvent">
+            <summary>
+            A public event.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.InternalClass.PrivateMethod(System.Boolean)">
+            <summary>
+            A private method.
+            </summary>
+            <param name="arg">arguments.</param>
+        </member>
+        <member name="M:SampleLibrary.InternalClass.ProtectedMethod(System.Byte)">
+            <summary>
+            A protected method.
+            </summary>
+            <param name="arg">arguments.</param>
+        </member>
+        <member name="M:SampleLibrary.InternalClass.ProtectedInternalMethod(System.Int16)">
+            <summary>
+            A protected internal method.
+            </summary>
+            <param name="arg">arguments.</param>
+        </member>
+        <member name="M:SampleLibrary.InternalClass.InternalMethod(System.Int32)">
+            <summary>
+            An internal method.
+            </summary>
+            <param name="arg">arguments.</param>
+        </member>
+        <member name="M:SampleLibrary.InternalClass.PublicMethod(System.Int64)">
+            <summary>
+            A public method.
+            </summary>
+            <param name="arg">arguments.</param>
+        </member>
+        <member name="T:SampleLibrary.InternalClass.PrivateNestedClass">
+            <summary>
+            A private nested class.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.InternalClass.PrivateNestedClass.#ctor">
+            <summary>
+            ctor.
+            </summary>
+        </member>
+        <member name="T:SampleLibrary.InternalClass.ProtectedNestedClass">
+            <summary>
+            A protected nested class.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.InternalClass.ProtectedNestedClass.#ctor">
+            <summary>
+            ctor.
+            </summary>
+        </member>
+        <member name="T:SampleLibrary.InternalClass.ProtectedInternalNestedClass">
+            <summary>
+            A protected internal nested class.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.InternalClass.ProtectedInternalNestedClass.#ctor">
+            <summary>
+            ctor.
+            </summary>
+        </member>
+        <member name="T:SampleLibrary.InternalClass.InternalNestedClass">
+            <summary>
+            An internal nested class.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.InternalClass.InternalNestedClass.#ctor">
+            <summary>
+            ctor.
+            </summary>
+        </member>
+        <member name="T:SampleLibrary.InternalClass.PublicNestedClass">
+            <summary>
+            A public nested class.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.InternalClass.PublicNestedClass.#ctor">
+            <summary>
+            ctor.
+            </summary>
+        </member>
+        <member name="T:SampleLibrary.ISample">
+            <summary>
+            Sample interface.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.ISample.InterfaceProperty">
+            <summary>
+            An interface property.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.ISample.InterfaceAction(System.Int32)">
+            <summary>
+            An interface action.
+            </summary>
+            <param name="arg"></param>
+        </member>
+        <member name="E:SampleLibrary.ISample.InterfaceEvent">
+            <summary>
+            An interface event.
+            </summary>
+        </member>
+        <member name="T:SampleLibrary.ObsoleteClass">
+            <summary>
+            Obsolete class.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.ObsoleteClass.#ctor">
+            <summary>
+            An obsolete constructor.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.ObsoleteClass.ObsoleteProperty">
+            <summary>
+            An obsolete property.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.ObsoleteClass.ObsoleteField">
+            <summary>
+            An obsolete field.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.ObsoleteClass.ObsoleteAction">
+            <summary>
+            An obsolete method.
+            </summary>
+        </member>
+        <member name="E:SampleLibrary.ObsoleteClass.ObsoleteEvent">
+            <summary>
+            An obsolete event.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.ObsoleteClass.ObsoleteStaticProperty">
+            <summary>
+            An obsolete static property.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.ObsoleteClass.ObsoleteStaticField">
+            <summary>
+            An obsolete static field.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.ObsoleteClass.ObsoleteStaticAction">
+            <summary>
+            An obsolete static method.
+            </summary>
+        </member>
+        <member name="E:SampleLibrary.ObsoleteClass.ObsoleteStaticEvent">
+            <summary>
+            An obsolete static event.
+            </summary>
+        </member>
+        <member name="T:SampleLibrary.PublicClass">
+            <summary>
+            public class.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.PublicClass.#ctor(System.Boolean)">
+            <summary>
+            private constructor.
+            </summary>
+            <param name="arg">argument.</param>
+        </member>
+        <member name="M:SampleLibrary.PublicClass.#ctor(System.Byte)">
+            <summary>
+            protected constructor.
+            </summary>
+            <param name="arg">argument.</param>
+        </member>
+        <member name="M:SampleLibrary.PublicClass.#ctor(System.Int16)">
+            <summary>
+            protected internal constructor.
+            </summary>
+            <param name="arg">argument.</param>
+        </member>
+        <member name="M:SampleLibrary.PublicClass.#ctor(System.Int32)">
+            <summary>
+            internal constructor.
+            </summary>
+            <param name="arg">argument.</param>
+        </member>
+        <member name="M:SampleLibrary.PublicClass.#ctor(System.Int64)">
+            <summary>
+            public constructor.
+            </summary>
+            <param name="arg">argument.</param>
+        </member>
+        <member name="P:SampleLibrary.PublicClass.PrivateProperty">
+            <summary>
+            A private property.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.PublicClass.ProtectedProperty">
+            <summary>
+            A protected property.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.PublicClass.ProtectedInternalProperty">
+            <summary>
+            A protected internal property.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.PublicClass.InternalProperty">
+            <summary>
+            An internal property.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.PublicClass.PublicProperty">
+            <summary>
+            A public property.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.PublicClass.PrivateSetterProperty">
+            <summary>
+            A property whose setter scope is private.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.PublicClass.PrivateGetterProperty">
+            <summary>
+            A property whose getter scope is private.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.PublicClass.ProtectedSetterProperty">
+            <summary>
+            A property whose setter scope is protected.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.PublicClass.ProtectedGetterProperty">
+            <summary>
+            A property whose getter scope is protected.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.PublicClass.InternalSetterProperty">
+            <summary>
+            A property whose setter scope is internal.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.PublicClass.InternalGetterProperty">
+            <summary>
+            A property whose getter scope is internal.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.PublicClass.PrivateField">
+            <summary>
+            A private field.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.PublicClass.ProtectedField">
+            <summary>
+            A protected field.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.PublicClass.ProtectedInternalField">
+            <summary>
+            A protected internal field.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.PublicClass.InternalField">
+            <summary>
+            An internal field.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.PublicClass.PublicField">
+            <summary>
+            A public field.
+            </summary>
+        </member>
+        <member name="E:SampleLibrary.PublicClass.PrivateEvent">
+            <summary>
+            A private event.
+            </summary>
+        </member>
+        <member name="E:SampleLibrary.PublicClass.ProtectedEvent">
+            <summary>
+            A protected event.
+            </summary>
+        </member>
+        <member name="E:SampleLibrary.PublicClass.ProtectedInternalEvent">
+            <summary>
+            A protected internal event.
+            </summary>
+        </member>
+        <member name="E:SampleLibrary.PublicClass.InternalEvent">
+            <summary>
+            An internal event.
+            </summary>
+        </member>
+        <member name="E:SampleLibrary.PublicClass.PublicEvent">
+            <summary>
+            A public event.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.PublicClass.PrivateMethod(System.Boolean)">
+            <summary>
+            A private method.
+            </summary>
+            <param name="arg">arguments.</param>
+        </member>
+        <member name="M:SampleLibrary.PublicClass.ProtectedMethod(System.Byte)">
+            <summary>
+            A protected method.
+            </summary>
+            <param name="arg">arguments.</param>
+        </member>
+        <member name="M:SampleLibrary.PublicClass.ProtectedInternalMethod(System.Int16)">
+            <summary>
+            A protected internal method.
+            </summary>
+            <param name="arg">arguments.</param>
+        </member>
+        <member name="M:SampleLibrary.PublicClass.InternalMethod(System.Int32)">
+            <summary>
+            An internal method.
+            </summary>
+            <param name="arg">arguments.</param>
+        </member>
+        <member name="M:SampleLibrary.PublicClass.PublicMethod(System.Int64)">
+            <summary>
+            A public method.
+            </summary>
+            <param name="arg">arguments.</param>
+        </member>
+        <member name="T:SampleLibrary.PublicClass.PrivateNestedClass">
+            <summary>
+            A private nested class.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.PublicClass.PrivateNestedClass.#ctor">
+            <summary>
+            ctor.
+            </summary>
+        </member>
+        <member name="T:SampleLibrary.PublicClass.ProtectedNestedClass">
+            <summary>
+            A protected nested class.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.PublicClass.ProtectedNestedClass.#ctor">
+            <summary>
+            ctor.
+            </summary>
+        </member>
+        <member name="T:SampleLibrary.PublicClass.ProtectedInternalNestedClass">
+            <summary>
+            A protected internal nested class.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.PublicClass.ProtectedInternalNestedClass.#ctor">
+            <summary>
+            ctor.
+            </summary>
+        </member>
+        <member name="T:SampleLibrary.PublicClass.InternalNestedClass">
+            <summary>
+            An internal nested class.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.PublicClass.InternalNestedClass.#ctor">
+            <summary>
+            ctor.
+            </summary>
+        </member>
+        <member name="T:SampleLibrary.PublicClass.PublicNestedClass">
+            <summary>
+            A public nested class.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.PublicClass.PublicNestedClass.#ctor">
+            <summary>
+            ctor.
+            </summary>
+        </member>
+        <member name="T:SampleLibrary.SampleClass">
+            <summary>
+            Sample class.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.SampleClass.#ctor">
+            <summary>
+            ctor.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.SampleClass.Action(System.Byte)">
+            <summary>
+            A sealed action.
+            </summary>
+            <param name="arg">argument.</param>
+        </member>
+        <member name="M:SampleLibrary.SampleClass.VirtualAction(System.Int16)">
+            <summary>
+            A virtual action.
+            </summary>
+            <param name="arg">argument.</param>
+        </member>
+        <member name="M:SampleLibrary.SampleClass.AbstractAction(System.Int32)">
+            <summary>
+            An abstract action.
+            </summary>
+            <param name="arg">argument.</param>
+        </member>
+        <member name="M:SampleLibrary.SampleClass.PrivateAction(System.Int64)">
+            <summary>
+            A private action.
+            </summary>
+            <param name="arg">argument.</param>
+        </member>
+        <member name="M:SampleLibrary.SampleClass.StaticAction(SampleLibrary.SampleClass)">
+            <summary>
+            A static action.
+            </summary>
+            <param name="sample">sample instance.</param>
+        </member>
+        <member name="P:SampleLibrary.SampleClass.Property">
+            <summary>
+            A sealed property.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.SampleClass.VirtualProperty">
+            <summary>
+            A virtual property.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.SampleClass.AbstractProperty">
+            <summary>
+            An abstract property.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.SampleClass.PrivateProperty">
+            <summary>
+            A private property.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.SampleClass.StaticProperty">
+            <summary>
+            A static property.
+            </summary>
+        </member>
+        <member name="E:SampleLibrary.SampleClass.Event">
+            <summary>
+            A sealed event.
+            </summary>
+        </member>
+        <member name="E:SampleLibrary.SampleClass.VirtualEvent">
+            <summary>
+            A virtual event.
+            </summary>
+        </member>
+        <member name="E:SampleLibrary.SampleClass.AbstractEvent">
+            <summary>
+            An abstract event.
+            </summary>
+        </member>
+        <member name="E:SampleLibrary.SampleClass.PrivateEvent">
+            <summary>
+            A private event.
+            </summary>
+        </member>
+        <member name="E:SampleLibrary.SampleClass.StaticEvent">
+            <summary>
+            A static event.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.SampleClass.Field">
+            <summary>
+            A field.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.SampleClass.PrivateField">
+            <summary>
+            A private field.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.SampleClass.ReadonlyField">
+            <summary>
+            A readonly field.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.SampleClass.StaticField">
+            <summary>
+            A static field.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.SampleClass.StaticReadonlyField">
+            <summary>
+            A static reaonly field.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.SampleClass.SampleLibrary#ISample#InterfaceProperty">
+            <inheritdoc/>
+        </member>
+        <member name="M:SampleLibrary.SampleClass.SampleLibrary#ISample#InterfaceAction(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="E:SampleLibrary.SampleClass.SampleLibrary#ISample#InterfaceEvent">
+            <inheritdoc/>
+        </member>
+        <member name="T:SampleLibrary.SampleAction">
+            <summary>
+            Sample action.
+            </summary>
+            <param name="sample">sample instance.</param>
+        </member>
+        <member name="T:SampleLibrary.SampleFunc">
+            <summary>
+            Sample function.
+            </summary>
+            <param name="sample">sample instance.</param>
+            <returns>A return value.</returns>
+        </member>
+        <member name="T:SampleLibrary.SampleGenericAction`1">
+            <summary>
+            Sample generic action.
+            </summary>
+            <typeparam name="TSample">The type of the sample instance.</typeparam>
+            <param name="sample">sample instance.</param>
+        </member>
+        <member name="T:SampleLibrary.SampleGenericFunc`2">
+            <summary>
+            Sample generic function.
+            </summary>
+            <typeparam name="TSample">The type of the sample instance.</typeparam>
+            <typeparam name="TResult">The type of return value.</typeparam>
+            <param name="sample">sample instance.</param>
+            <returns>A return value.</returns>
+        </member>
+        <member name="T:SampleLibrary.SampleEnum">
+            <summary>
+            Sample enum.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.SampleEnum.Unknown">
+            <summary>
+            Unknown.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.SampleEnum.One">
+            <summary>
+            One.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.SampleEnum.Two">
+            <summary>
+            Two.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.SampleEnum.Three">
+            <summary>
+            Three.
+            </summary>
+        </member>
+        <member name="T:SampleLibrary.SampleFlag">
+            <summary>
+            Sample flag.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.SampleFlag.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.SampleFlag.Left">
+            <summary>
+            Left.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.SampleFlag.Right">
+            <summary>
+            Right.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.SampleFlag.Center">
+            <summary>
+            Center.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.SampleFlag.LeftRight">
+            <summary>
+            Left or Right.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.SampleFlag.All">
+            <summary>
+            Left or Right or Center.
+            </summary>
+        </member>
+        <member name="T:SampleLibrary.SampleStruct">
+            <summary>
+            Sample structure.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.SampleStruct.#ctor(System.Byte)">
+            <summary>
+            ctor.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.SampleStruct.Action(System.Byte)">
+            <summary>
+            action.
+            </summary>
+            <param name="arg">argument.</param>
+        </member>
+        <member name="M:SampleLibrary.SampleStruct.StaticAction(SampleLibrary.SampleStruct)">
+            <summary>
+            static action.
+            </summary>
+            <param name="sample">sample instance.</param>
+        </member>
+        <member name="P:SampleLibrary.SampleStruct.Property">
+            <summary>
+            property.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.SampleStruct.StaticProperty">
+            <summary>
+            static property.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.SampleStruct.Field">
+            <summary>
+            field.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.SampleStruct.ReadonlyField">
+            <summary>
+            readonly field.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.SampleStruct.StaticField">
+            <summary>
+            static field.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.SampleStruct.StaticReadonlyField">
+            <summary>
+            static reaonly field.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.SampleStruct.SampleLibrary#ISample#InterfaceProperty">
+            <inheritdoc/>
+        </member>
+        <member name="M:SampleLibrary.SampleStruct.SampleLibrary#ISample#InterfaceAction(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="E:SampleLibrary.SampleStruct.SampleLibrary#ISample#InterfaceEvent">
+            <inheritdoc/>
+        </member>
+        <member name="T:SampleLibrary.SampleSubClass">
+            <summary>
+            Sub class of <see cref="T:SampleLibrary.SampleClass"/>.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.SampleSubClass.#ctor">
+            <summary>
+            ctor.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.SampleSubClass.Action(System.Byte)">
+            <summary>
+            A new action.
+            </summary>
+            <param name="arg">argument.</param>
+        </member>
+        <member name="M:SampleLibrary.SampleSubClass.VirtualAction(System.Int16)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SampleLibrary.SampleSubClass.AbstractAction(System.Int32)">
+            <summary>
+            An override action.
+            </summary>
+            <param name="arg">argument.</param>
+        </member>
+        <member name="M:SampleLibrary.SampleSubClass.SubClassAction(System.Int64)">
+            <summary>
+            An action declared in <see cref="T:SampleLibrary.SampleSubClass"/>.
+            </summary>
+            <param name="arg">argument.</param>
+        </member>
+        <member name="P:SampleLibrary.SampleSubClass.Property">
+            <summary>
+            A new property.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.SampleSubClass.VirtualProperty">
+            <inheritdoc/>
+        </member>
+        <member name="P:SampleLibrary.SampleSubClass.AbstractProperty">
+            <summary>
+            An override property.
+            </summary>
+        </member>
+        <member name="P:SampleLibrary.SampleSubClass.SubClassProperty">
+            <summary>
+            A property declared in <see cref="T:SampleLibrary.SampleSubClass"/>.
+            </summary>
+        </member>
+        <member name="E:SampleLibrary.SampleSubClass.Event">
+            <summary>
+            A new event.
+            </summary>
+        </member>
+        <member name="E:SampleLibrary.SampleSubClass.VirtualEvent">
+            <inheritdoc/>
+        </member>
+        <member name="E:SampleLibrary.SampleSubClass.AbstractEvent">
+            <summary>
+            An override event.
+            </summary>
+        </member>
+        <member name="E:SampleLibrary.SampleSubClass.SubClassEvent">
+            <summary>
+            An event declared in <see cref="T:SampleLibrary.SampleSubClass"/>.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.SampleSubClass.SubClassField">
+            <summary>
+            A field declared in <see cref="T:SampleLibrary.SampleSubClass"/>.
+            </summary>
+        </member>
+        <member name="T:SampleLibrary.SampleSubSubClass">
+            <summary>
+            Sub class of <see cref="T:SampleLibrary.SampleSubClass"/>.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.SampleSubSubClass.#ctor">
+            <summary>
+            ctor.
+            </summary>
+        </member>
+        <member name="M:SampleLibrary.SampleSubSubClass.SubSubClassAction(System.Int64)">
+            <summary>
+            An action declared in <see cref="T:SampleLibrary.SampleSubSubClass"/>.
+            </summary>
+            <param name="arg">argument.</param>
+        </member>
+        <member name="P:SampleLibrary.SampleSubSubClass.SubSubClassProperty">
+            <summary>
+            A property declared in <see cref="T:SampleLibrary.SampleSubSubClass"/>.
+            </summary>
+        </member>
+        <member name="E:SampleLibrary.SampleSubSubClass.SubSubClassEvent">
+            <summary>
+            An event declared in <see cref="T:SampleLibrary.SampleSubSubClass"/>.
+            </summary>
+        </member>
+        <member name="F:SampleLibrary.SampleSubSubClass.SubSubClassField">
+            <summary>
+            A field declared in <see cref="T:SampleLibrary.SampleSubSubClass"/>.
+            </summary>
+        </member>
+    </members>
+</doc>

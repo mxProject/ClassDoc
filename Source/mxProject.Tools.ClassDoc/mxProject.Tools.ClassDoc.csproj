@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>mxProject</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <Version>0.5.0</Version>
+    <Description>Reads the XML document comment output from Visual Studio and outputs the document like a class reference without SandCastle.</Description>
+    <Copyright>mxProject</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/mxProject/ClassDoc</PackageProjectUrl>
+    <PackageReleaseNotes>First release.</PackageReleaseNotes>
+    <Authors>mxProject</Authors>
+    <PackageTags>Documentation</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>E:\Data\Program\Source\GitHub\mxProject\Working\ClassDocumentGenerator\mxProject.Tools.ClassDoc\mxProject.Tools.ClassDoc.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>E:\Data\Program\Source\GitHub\mxProject\Working\ClassDocumentGenerator\mxProject.Tools.ClassDoc\mxProject.Tools.ClassDoc.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
+    <PackageReference Include="ZString" Version="2.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Tools\MessageResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MessageResource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Tools\MessageResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MessageResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
