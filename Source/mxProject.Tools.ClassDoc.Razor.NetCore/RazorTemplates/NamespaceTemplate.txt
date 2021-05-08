@@ -1,7 +1,7 @@
 ﻿@using mxProject.Tools.ClassDoc;
 @using mxProject.Tools.ClassDoc.Markdown;
 
-@functions {
+@{
 
 	string FormatTypeLink(TypeWithComment type, bool isFullName, string format = null)
 	{

@@ -2,7 +2,7 @@
 @using mxProject.Tools.ClassDoc.Markdown;
 @using System.Text;
 
-@functions {
+@{
 
 	string FormatMemberScope(MemberScope scope)
 	{
@@ -113,32 +113,32 @@
 		return ViewBag.Formatter.ReplaceReferenceTag(Model, text);
 	}
 
-	string Obsolete(TypeWithComment type)
+	string ObsoleteType(TypeWithComment type)
 	{
 		return type.IsObsolete ? "**[OBSOLETE]** " : "";
 	}
 
-	string Obsolete(ConstructorInfoWithComment member)
+	string ObsoleteConstructor(ConstructorInfoWithComment member)
 	{
 		return member.IsObsolete ? "**[OBSOLETE]** " : "";
 	}
 
-	string Obsolete(PropertyInfoWithComment member)
+	string ObsoleteProperty(PropertyInfoWithComment member)
 	{
 		return member.IsObsolete ? "**[OBSOLETE]** " : "";
 	}
 
-	string Obsolete(FieldInfoWithComment member)
+	string ObsoleteField(FieldInfoWithComment member)
 	{
 		return member.IsObsolete ? "**[OBSOLETE]** " : "";
 	}
 
-	string Obsolete(MethodInfoWithComment member)
+	string ObsoleteMethod(MethodInfoWithComment member)
 	{
 		return member.IsObsolete ? "**[OBSOLETE]** " : "";
 	}
 
-	string Obsolete(EventInfoWithComment member)
+	string ObsoleteEvent(EventInfoWithComment member)
 	{
 		return member.IsObsolete ? "**[OBSOLETE]** " : "";
 	}
@@ -149,7 +149,7 @@
 
 # @FormatTypeName(Model, false) @(Model.IsDelegate ? "Delegate" : Model.IsInterface ? "Interface" : Model.IsEnum ? "Enum" : Model.IsValueType ? "ValueType" : Model.IsClass ? "Class" : "Type")
 
-@Obsolete(Model)
+@ObsoleteType(Model)
 
 @FormatTextContent(Model.Comment.Summary)
 
@@ -238,7 +238,7 @@
 @:|:--|:--|:--|
 	foreach (var ctor in Model.Constructors)
 	{
-@:| @FormatMemberScope(ctor.Scope) | @FormatConstructorLink(ctor) | @Obsolete(ctor)@FormatTextContent(ctor.Comment.Summary) |
+@:| @FormatMemberScope(ctor.Scope) | @FormatConstructorLink(ctor) | @ObsoleteConstructor(ctor)@FormatTextContent(ctor.Comment.Summary) |
 	}
 
 	foreach (var ctor in Model.Constructors)
@@ -246,7 +246,7 @@
 @:---
 @:### @FormatConstructorAnchor(ctor)
 
-@:@Obsolete(ctor)
+@:@ObsoleteConstructor(ctor)
 
 @:@FormatTextContent(ctor.Comment.Summary)
 
@@ -305,7 +305,7 @@
 		foreach (var prop in Model.Properties)
 		{
 			if (prop.IsStatic) { continue; }
-@:| @FormatMemberScope(prop.Scope) | @FormatPropertyLink(prop) | @FormatTypeLink(prop.PropertyTypeInfo, false) | @Obsolete(prop)@FormatTextContent(prop.GetSummaryWithInherits()) |
+@:| @FormatMemberScope(prop.Scope) | @FormatPropertyLink(prop) | @FormatTypeLink(prop.PropertyTypeInfo, false) | @ObsoleteProperty(prop)@FormatTextContent(prop.GetSummaryWithInherits()) |
 		}
 	}
 
@@ -318,7 +318,7 @@
 		foreach (var prop in Model.Properties)
 		{
 			if (!prop.IsStatic) { continue; }
-@:| @FormatMemberScope(prop.Scope) | @FormatPropertyLink(prop) | @FormatTypeLink(prop.PropertyTypeInfo, false) | @Obsolete(prop)@FormatTextContent(prop.GetSummaryWithInherits()) |
+@:| @FormatMemberScope(prop.Scope) | @FormatPropertyLink(prop) | @FormatTypeLink(prop.PropertyTypeInfo, false) | @ObsoleteProperty(prop)@FormatTextContent(prop.GetSummaryWithInherits()) |
 		}
 	}
 
@@ -327,7 +327,7 @@
 @:---
 @:### @FormatPropertyAnchor(prop)
 
-@:@Obsolete(prop)
+@:@ObsoleteProperty(prop)
 
 @:@FormatTextContent(prop.GetSummaryWithInherits())
 
@@ -380,7 +380,7 @@
 @:|:--|:--|:--|:--|
 	foreach (var field in Model.Fields)
 	{
-@:| @FormatMemberScope(field.Scope) | @FormatFieldLink(field) | @Convert.ToInt64(field.Info.GetValue(null)) | @Obsolete(field)@FormatTextContent(field.Comment.Summary) |
+@:| @FormatMemberScope(field.Scope) | @FormatFieldLink(field) | @Convert.ToInt64(field.Info.GetValue(null)) | @ObsoleteField(field)@FormatTextContent(field.Comment.Summary) |
 	}
 }
 else
@@ -397,7 +397,7 @@ else
 			foreach (var field in Model.Fields)
 			{
 				if (field.IsStatic) { continue; }
-@:| @FormatMemberScope(field.Scope) | @FormatFieldLink(field) | @FormatTypeLink(field.FieldTypeInfo, false) | @Obsolete(field)@FormatTextContent(field.Comment.Summary) |
+@:| @FormatMemberScope(field.Scope) | @FormatFieldLink(field) | @FormatTypeLink(field.FieldTypeInfo, false) | @ObsoleteField(field)@FormatTextContent(field.Comment.Summary) |
 			}
 		}
 
@@ -410,7 +410,7 @@ else
 			foreach (var field in Model.Fields)
 			{
 				if (!field.IsStatic) { continue; }
-@:| @FormatMemberScope(field.Scope) | @FormatFieldLink(field) | @FormatTypeLink(field.FieldTypeInfo, false) | @Obsolete(field)@FormatTextContent(field.Comment.Summary) |
+@:| @FormatMemberScope(field.Scope) | @FormatFieldLink(field) | @FormatTypeLink(field.FieldTypeInfo, false) | @ObsoleteField(field)@FormatTextContent(field.Comment.Summary) |
 			}
 		}
 
@@ -419,7 +419,7 @@ else
 @:---
 @:### @FormatFieldAnchor(field)
 
-@:@Obsolete(field)
+@:@ObsoleteField(field)
 
 @:@FormatTextContent(field.Comment.Summary)
 
@@ -462,7 +462,7 @@ else
 		foreach (var method in Model.Methods)
 		{
 			if (method.IsStatic) { continue; }
-@:| @FormatMemberScope(method.Scope) | @FormatMethodLink(method) | @FormatTypeLink(method.ReturnTypeInfo, false) | @Obsolete(method)@FormatTextContent(method.GetSummaryWithInherits()) |
+@:| @FormatMemberScope(method.Scope) | @FormatMethodLink(method) | @FormatTypeLink(method.ReturnTypeInfo, false) | @ObsoleteMethod(method)@FormatTextContent(method.GetSummaryWithInherits()) |
 		}
 	}
 
@@ -475,7 +475,7 @@ else
 		foreach (var method in Model.Methods)
 		{
 			if (!method.IsStatic) { continue; }
-@:| @FormatMemberScope(method.Scope) | @FormatMethodLink(method) | @FormatTypeLink(method.ReturnTypeInfo, false) | @Obsolete(method)@FormatTextContent(method.GetSummaryWithInherits()) |
+@:| @FormatMemberScope(method.Scope) | @FormatMethodLink(method) | @FormatTypeLink(method.ReturnTypeInfo, false) | @ObsoleteMethod(method)@FormatTextContent(method.GetSummaryWithInherits()) |
 		}
 	}
 
@@ -484,7 +484,7 @@ else
 @:---
 @:### @FormatMethodAnchor(method)
 
-@:@Obsolete(method)
+@:@ObsoleteMethod(method)
 
 @:@FormatTextContent(method.GetSummaryWithInherits())
 
@@ -561,7 +561,7 @@ else
 		foreach (var evt in Model.Events)
 		{
 			if (evt.IsStatic) { continue; }
-@:| @FormatMemberScope(evt.Scope) | @FormatEventLink(evt) | @FormatTypeLink(evt.EventHandlerTypeInfo, false) | @Obsolete(evt)@FormatTextContent(evt.GetSummaryWithInherits()) |
+@:| @FormatMemberScope(evt.Scope) | @FormatEventLink(evt) | @FormatTypeLink(evt.EventHandlerTypeInfo, false) | @ObsoleteEvent(evt)@FormatTextContent(evt.GetSummaryWithInherits()) |
 		}
 	}
 
@@ -574,7 +574,7 @@ else
 		foreach (var evt in Model.Events)
 		{
 			if (!evt.IsStatic) { continue; }
-@:| @FormatMemberScope(evt.Scope) | @FormatEventLink(evt) | @FormatTypeLink(evt.EventHandlerTypeInfo, false) | @Obsolete(evt)@FormatTextContent(evt.GetSummaryWithInherits()) |
+@:| @FormatMemberScope(evt.Scope) | @FormatEventLink(evt) | @FormatTypeLink(evt.EventHandlerTypeInfo, false) | @ObsoleteEvent(evt)@FormatTextContent(evt.GetSummaryWithInherits()) |
 		}
 	}
 
@@ -583,7 +583,7 @@ else
 @:---
 @:### @FormatEventAnchor(evt)
 
-@:@Obsolete(evt)
+@:@ObsoleteEvent(evt)
 
 @:@FormatTextContent(evt.GetSummaryWithInherits())
 
