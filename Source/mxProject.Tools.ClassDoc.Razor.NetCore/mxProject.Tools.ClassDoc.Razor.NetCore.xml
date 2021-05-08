@@ -9,25 +9,43 @@
             Document writer using Razor.
             </summary>
         </member>
-        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.#ctor(System.Text.Encoding)">
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.#ctor(System.Text.Encoding,System.String,System.String)">
+            <summary>
+            ctor
+            </summary>
+            <param name="encoding"></param>
+            <param name="namespaceDocumentTemplate"></param>
+            <param name="typeDocumentTemplate"></param>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.Create(System.Text.Encoding,System.String,System.String)">
             <summary>
             Create a new instance.
             </summary>
             <param name="encoding">The output document encoding.</param>
+            <param name="namespaceDocumentTemplate">The namespace document template.</param>
+            <param name="typeDocumentTemplate">The type document template.</param>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.CompileTemplate">
+            <summary>
+            Compiles the templates.
+            </summary>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.TemplateKey">
+            <summary>
+            Template Key.
+            </summary>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.TemplateSource">
+            <summary>
+            Template Source.
+            </summary>
         </member>
         <member name="P:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.Encoding">
             <summary>
             Gets the encoding.
-            </summary>
-        </member>
-        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.NamespaceDocumentTemplate">
-            <summary>
-            Gets or sets the namespace document template.
-            </summary>
-        </member>
-        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.TypeDocumentTemplate">
-            <summary>
-            Gets or sets the type document template.
             </summary>
         </member>
         <member name="P:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.RootDirectory">
