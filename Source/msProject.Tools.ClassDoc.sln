@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleLibrary2", "SampleLib
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleConsoleApp", "SampleConsoleApp\SampleConsoleApp.csproj", "{C80DCC75-4FC9-4E0A-A52B-8D0523FA5A76}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mxProject.Tools.ClassDoc.Razor.NetCore", "mxProject.Tools.ClassDoc.Razor.NetCore\mxProject.Tools.ClassDoc.Razor.NetCore.csproj", "{2E935B76-8F60-45FB-BC1B-9F44A8E5A392}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleConsoleApp.NetCore", "SampleConsoleApp.NetCore\SampleConsoleApp.NetCore.csproj", "{9F342934-B576-4BEC-AF3C-0B2E85D9C2AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{C80DCC75-4FC9-4E0A-A52B-8D0523FA5A76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C80DCC75-4FC9-4E0A-A52B-8D0523FA5A76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C80DCC75-4FC9-4E0A-A52B-8D0523FA5A76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E935B76-8F60-45FB-BC1B-9F44A8E5A392}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E935B76-8F60-45FB-BC1B-9F44A8E5A392}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E935B76-8F60-45FB-BC1B-9F44A8E5A392}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E935B76-8F60-45FB-BC1B-9F44A8E5A392}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F342934-B576-4BEC-AF3C-0B2E85D9C2AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F342934-B576-4BEC-AF3C-0B2E85D9C2AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F342934-B576-4BEC-AF3C-0B2E85D9C2AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F342934-B576-4BEC-AF3C-0B2E85D9C2AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

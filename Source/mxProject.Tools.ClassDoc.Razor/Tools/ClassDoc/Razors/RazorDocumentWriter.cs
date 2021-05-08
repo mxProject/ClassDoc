@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using RazorEngine.Templating;
 
 namespace mxProject.Tools.ClassDoc.Razors
 {
@@ -9,7 +10,7 @@ namespace mxProject.Tools.ClassDoc.Razors
     /// <summary>
     /// Document writer using Razor.
     /// </summary>
-    public class RazorDocumentWriter : IClassDocumentWriter
+    public class RazorDocumentWriter : IClassDocumentWriter, IDisposable
     {
 
         /// <summary>
@@ -25,12 +26,70 @@ namespace mxProject.Tools.ClassDoc.Razors
                 EncodedStringFactory = new RazorEngine.Text.RawStringFactory()
             };
 
-#pragma warning disable CS0618
-            var myConfiguredTemplateService = new RazorEngine.Templating.TemplateService(config);
-            RazorEngine.Razor.SetTemplateService(myConfiguredTemplateService);
-#pragma warning restore CS0618
+            m_Engine = RazorEngine.Templating.RazorEngineService.Create(config);
 
+            m_NamespaceDocumentTempkateKey = new TemplateKey("NameSpaceDocument");
+            m_NamespaceDocumentTempkateSource = new TemplateSource("");
+            m_Engine.AddTemplate(m_NamespaceDocumentTempkateKey, m_NamespaceDocumentTempkateSource);
+
+            m_TypeDocumentTempkateKey = new TemplateKey("TypeDocument");
+            m_TypeDocumentTempkateSource = new TemplateSource("");
+            m_Engine.AddTemplate(m_TypeDocumentTempkateKey, m_TypeDocumentTempkateSource);
         }
+
+        /// <inheritdoc/>
+        public void Dispose()
+        {
+            m_Engine?.Dispose();
+        }
+
+        private readonly RazorEngine.Templating.IRazorEngineService m_Engine;
+
+        #region template definition
+
+        private readonly TemplateKey m_TypeDocumentTempkateKey;
+        private readonly TemplateSource m_TypeDocumentTempkateSource;
+
+        private readonly TemplateKey m_NamespaceDocumentTempkateKey;
+        private readonly TemplateSource m_NamespaceDocumentTempkateSource;
+
+        private readonly struct TemplateKey : RazorEngine.Templating.ITemplateKey
+        {
+            internal TemplateKey(string name)
+            {
+                Name = name;
+            }
+
+            public string Name { get; }
+
+            public ResolveType TemplateType => ResolveType.Global;
+
+            public ITemplateKey Context => null;
+
+            public string GetUniqueKeyString()
+            {
+                return Name;
+            }
+        }
+
+        private class TemplateSource : RazorEngine.Templating.ITemplateSource
+        {
+            internal TemplateSource(string template)
+            {
+                Template = template;
+            }
+
+            public string TemplateFile => null;
+
+            public string Template { get; set; }
+
+            public TextReader GetTemplateReader()
+            {
+                return new StringReader(Template);
+            }
+        }
+
+        #endregion
 
         /// <summary>
         /// Gets the encoding.
@@ -40,12 +99,20 @@ namespace mxProject.Tools.ClassDoc.Razors
         /// <summary>
         /// Gets or sets the namespace document template.
         /// </summary>
-        public string NamespaceDocumentTemplate { get; set; }
+        public string NamespaceDocumentTemplate
+        {
+            get { return m_NamespaceDocumentTempkateSource.Template; }
+            set { m_NamespaceDocumentTempkateSource.Template = value; }
+        }
 
         /// <summary>
         /// Gets or sets the type document template.
         /// </summary>
-        public string TypeDocumentTemplate { get; set; }
+        public string TypeDocumentTemplate
+        {
+            get { return m_TypeDocumentTempkateSource.Template; }
+            set { m_TypeDocumentTempkateSource.Template = value; }
+        }
 
         /// <summary>
         /// Gets or sets the path of the root directory of the output destination.
@@ -69,9 +136,11 @@ namespace mxProject.Tools.ClassDoc.Razors
             RazorEngine.Templating.DynamicViewBag viewBag = new RazorEngine.Templating.DynamicViewBag();
             viewBag.AddValue("Formatter", formatter);
 
-#pragma warning disable CS0618
-            File.WriteAllText(filePath, RazorEngine.Razor.Parse(NamespaceDocumentTemplate, nameSpace, viewBag, "NamespaceDocument"), Encoding);
-#pragma warning restore CS0618
+            using (StreamWriter writer = new StreamWriter(filePath, false, Encoding))
+            {
+                m_Engine.Run(m_NamespaceDocumentTempkateKey, writer, nameSpace.GetType(), nameSpace, viewBag: viewBag);
+                writer.Flush();
+            }
         }
 
         /// <summary>
@@ -110,9 +179,11 @@ namespace mxProject.Tools.ClassDoc.Razors
             RazorEngine.Templating.DynamicViewBag viewBag = new RazorEngine.Templating.DynamicViewBag();
             viewBag.AddValue("Formatter", formatter);
 
-#pragma warning disable CS0618
-            File.WriteAllText(filePath, RazorEngine.Razor.Parse(TypeDocumentTemplate, type, viewBag, "TypeDocument"), Encoding);
-#pragma warning restore CS0618
+            using (StreamWriter writer = new StreamWriter(filePath, false, Encoding))
+            {
+                m_Engine.Run(m_TypeDocumentTempkateKey, writer, type.GetType(), type, viewBag: viewBag);
+                writer.Flush();
+            }
         }
 
         /// <summary>
