@@ -138,7 +138,7 @@ namespace mxProject.Tools.ClassDoc.Razors
 
             using (StreamWriter writer = new StreamWriter(filePath, false, Encoding))
             {
-                m_Engine.Run(m_NamespaceDocumentTempkateKey, writer, nameSpace.GetType(), nameSpace, viewBag: viewBag);
+                m_Engine.RunCompile(m_NamespaceDocumentTempkateKey, writer, nameSpace.GetType(), nameSpace, viewBag: viewBag);
                 writer.Flush();
             }
         }
@@ -181,7 +181,7 @@ namespace mxProject.Tools.ClassDoc.Razors
 
             using (StreamWriter writer = new StreamWriter(filePath, false, Encoding))
             {
-                m_Engine.Run(m_TypeDocumentTempkateKey, writer, type.GetType(), type, viewBag: viewBag);
+                m_Engine.RunCompile(m_TypeDocumentTempkateKey, writer, type.GetType(), type, viewBag: viewBag);
                 writer.Flush();
             }
         }
