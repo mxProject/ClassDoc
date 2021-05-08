@@ -25,6 +25,14 @@ NET Framework 4.7.2
 * mxProject.Tools.ClassDoc
 * [RazorEngine 3.0.0.0](https://github.com/Antaris/RazorEngine)
 
+### mxProject.Tools.ClassDoc.Razor.NetCore
+
+#### Framework
+.NET Standard 2.1
+#### Assemblies
+* mxProject.Tools.ClassDoc
+* [RazorEngine.NetCore 3.1.0](https://github.com/fouadmess/RazorEngine)
+
 
 ## Features
 
@@ -121,13 +129,26 @@ static void OutputDocument()
         @".\LoadAssemblies\SampleLibrary2.dll"
     };
 
-    // Setup a writer.
+
+    // Setup a writer. (,NET Framework version)
     RazorDocumentWriter writer = new RazorDocumentWriter(Encoding.UTF8)
     {
         RootDirectory = @".\Documents\",
         TypeDocumentTemplate = File.ReadAllText(typeTemplate, Encoding.UTF8),
         NamespaceDocumentTemplate = File.ReadAllText(namespaceTemplate, Encoding.UTF8),
     };
+
+    // Setup a writer. (NetCore version)
+    string typeDocTemplate = File.ReadAllText(typeTemplate, Encoding.UTF8);
+    string namespaceDocTemplate = File.ReadAllText(namespaceTemplate, Encoding.UTF8);
+    using RazorDocumentWriter writer = RazorDocumentWriter.Create
+    (
+        Encoding.UTF8,
+        namespaceDocTemplate,
+        typeDocTemplate
+    );
+    writer.RootDirectory = @".\Documents\";
+
 
     // Setup a context and a formatter.
     ClassDocContext context = new ClassDocContext()

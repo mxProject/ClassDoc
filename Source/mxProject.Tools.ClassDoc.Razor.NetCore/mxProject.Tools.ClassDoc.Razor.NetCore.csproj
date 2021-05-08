@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>mxProject</RootNamespace>
-    <Version>0.6.1</Version>
+    <Version>0.6.2</Version>
     <Description>Reads the XML document comment output from Visual Studio and outputs the document like a class reference without SandCastle.</Description>
     <Copyright>mxProject</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -11,7 +11,7 @@
     <Company>mxProject</Company>
     <PackageProjectUrl>https://github.com/mxProject/ClassDoc</PackageProjectUrl>
     <PackageTags>Documentation</PackageTags>
-    <PackageReleaseNotes>Changed from RazorEngine to RazorEngine.Net Core.</PackageReleaseNotes>
+    <PackageReleaseNotes>Replaced the template file.</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
