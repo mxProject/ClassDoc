@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>mxProject.Tools.ClassDoc.Razor.NetCore</name>
+    </assembly>
+    <members>
+        <member name="T:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter">
+            <summary>
+            Document writer using Razor.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.#ctor(System.Text.Encoding)">
+            <summary>
+            Create a new instance.
+            </summary>
+            <param name="encoding">The output document encoding.</param>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.Encoding">
+            <summary>
+            Gets the encoding.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.NamespaceDocumentTemplate">
+            <summary>
+            Gets or sets the namespace document template.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.TypeDocumentTemplate">
+            <summary>
+            Gets or sets the type document template.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.RootDirectory">
+            <summary>
+            Gets or sets the path of the root directory of the output destination.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.WriteNamespaceDocument(mxProject.Tools.ClassDoc.NamespaceInfo,mxProject.Tools.ClassDoc.IClassDocumentFormatter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.GetNamespaceDocumentFilePath(System.String,System.Boolean)">
+            <summary>
+            Gets the document output file path for the specified namespace.
+            </summary>
+            <param name="nameSpace">The namespace.</param>
+            <param name="relative">A value that indicates whether to return a relative path from the root directory.</param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.WriteTypeDocument(mxProject.Tools.ClassDoc.TypeWithComment,mxProject.Tools.ClassDoc.IClassDocumentFormatter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.GetTypeDocumentFilePath(mxProject.Tools.ClassDoc.TypeWithComment,System.Boolean)">
+            <summary>
+            Gets the document output file path for the specified type.
+            </summary>
+            <param name="type">The type information.</param>
+            <param name="relative">A value that indicates whether to return a relative path from the root directory.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

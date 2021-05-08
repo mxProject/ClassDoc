@@ -1,0 +1,104 @@
+﻿@using mxProject.Tools.ClassDoc;
+@using mxProject.Tools.ClassDoc.Markdown;
+
+@{
+
+	string FormatTypeLink(TypeWithComment type, bool isFullName, string format = null)
+	{
+		return ViewBag.Formatter.FormatToLink(type, isFullName, format);
+	}
+
+	string FormatTextContent(TypeWithComment type, string text)
+	{
+		return ViewBag.Formatter.ReplaceReferenceTag(type, text);
+	}
+
+	string Obsolete(TypeWithComment type)
+	{
+		return type.IsObsolete ? "**[OBSOLETE]** " : "";
+	}
+}
+
+# @Model.Namespace Namespace
+
+@if (Model.Classes.Count > 0)
+{
+@:[Classes](#Classes)&nbsp;&nbsp;
+}
+@if (Model.ValueTypes.Count > 0)
+{
+@:[ValueTypes](#ValueTypes)&nbsp;&nbsp;
+}
+@if (Model.Enums.Count > 0)
+{
+@:[Enums](#Enums)&nbsp;&nbsp;
+}
+@if (Model.Interfaces.Count > 0)
+{
+@:[Interfaces](#Interfaces)&nbsp;&nbsp;
+}
+@if (Model.Delegates.Count > 0)
+{
+@:[Delegates](#Delegates)&nbsp;&nbsp;
+}
+
+@if (Model.Classes.Count > 0)
+{
+@:## Classes
+
+@:|Type|Summary|
+@:|:--|:--|
+	foreach (var type in Model.Classes)
+	{
+@:| @FormatTypeLink(type, false) | @Obsolete(type)@FormatTextContent(type, type.Comment.Summary) |
+	}
+}
+
+@if (Model.ValueTypes.Count > 0)
+{
+@:## ValueTypes
+
+@:|Type|Summary|
+@:|:--|:--|
+	foreach (var type in Model.ValueTypes)
+	{
+@:| @FormatTypeLink(type, false) | @Obsolete(type)@FormatTextContent(type, type.Comment.Summary) |
+	}
+}
+
+@if (Model.Enums.Count > 0)
+{
+@:## Enums
+
+@:|Type|Summary|
+@:|:--|:--|
+	foreach (var type in Model.Enums)
+	{
+@:| @FormatTypeLink(type, false) | @Obsolete(type)@FormatTextContent(type, type.Comment.Summary) |
+	}
+}
+
+@if (Model.Interfaces.Count > 0)
+{
+@:## Interfaces
+
+@:|Type|Summary|
+@:|:--|:--|
+	foreach (var type in Model.Interfaces)
+	{
+@:| @FormatTypeLink(type, false) | @Obsolete(type)@FormatTextContent(type, type.Comment.Summary) |
+	}
+}
+
+@if (Model.Delegates.Count > 0)
+{
+@:## Delegates
+
+@:|Type|Summary|
+@:|:--|:--|
+	foreach (var type in Model.Delegates)
+	{
+@:| @FormatTypeLink(type, false) | @Obsolete(type)@FormatTextContent(type, type.Comment.Summary) |
+	}
+}
+
