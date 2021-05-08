@@ -35,6 +35,8 @@ namespace SampleConsoleApp
             // Loading assemblies
             string[] dlls = new[]
             {
+                @".\LoadAssemblies\mxProject.Tools.ClassDoc.dll",
+                @".\LoadAssemblies\mxProject.Tools.ClassDoc.Razor.NetCore.dll",
                 @".\LoadAssemblies\SampleLibrary1.dll",
                 @".\LoadAssemblies\SampleLibrary2.dll"
             };
