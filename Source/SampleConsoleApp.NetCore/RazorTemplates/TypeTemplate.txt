@@ -1,0 +1,637 @@
+﻿@using mxProject.Tools.ClassDoc;
+@using mxProject.Tools.ClassDoc.Markdown;
+@using System.Text;
+
+@{
+
+	string FormatMemberScope(MemberScope scope)
+	{
+		if (scope == MemberScope.None) { return ""; }
+		if (scope == MemberScope.ProtectedInternal) { return "internal" + "<" + "br>protected"; }
+		return scope.ToString().ToLower();
+	}
+
+	string FormatTypeName(TypeWithComment type, bool isFullName)
+	{
+		return ViewBag.Formatter.FormatToReadableName(type, isFullName);
+	}
+
+	string FormatTypeLink(TypeWithComment type, bool isFullName, string format = null)
+	{
+		return ViewBag.Formatter.FormatToLink(type, isFullName, format);
+	}
+
+	string FormatTypeLinks(IEnumerable<TypeWithComment> types, bool isFullName, string format = null)
+	{
+		if (types == null) { return ""; }
+
+		var sb = new StringBuilder();
+
+		foreach (var type in types)
+		{
+			if (sb.Length > 0) { sb.Append(", "); }
+			sb.Append(FormatTypeLink(type, isFullName, format));
+		}
+
+		return sb.ToString();
+	}
+
+	string FormatTypeParameterConstraints(TypeParameterWithComment parameter)
+	{
+		var constraints = parameter.GetConstraintTypes();
+
+		var sb = new StringBuilder();
+
+		sb.Append(parameter.Attributes.GetDeclaration());
+
+		if (constraints.Length > 0)
+		{
+			if (sb.Length > 0) { sb.Append(", "); }
+			sb.Append(FormatTypeLinks(constraints, false));
+		}
+
+		return sb.ToString();
+	}
+
+	string FormatConstructorAnchor(ConstructorInfoWithComment ctor, string format = null)
+	{
+		return ViewBag.Formatter.FormatToAnchor(ctor, format);
+	}
+
+	string FormatConstructorLink(ConstructorInfoWithComment ctor, string format = null)
+	{
+		return ViewBag.Formatter.FormatToLink(Model, ctor, format);
+	}
+
+	string FormatMethodAnchor(MethodInfoWithComment method, string format = null)
+	{
+		return ViewBag.Formatter.FormatToAnchor(method, format);
+	}
+
+	string FormatMethodLink(MethodInfoWithComment method, string format = null)
+	{
+		return ViewBag.Formatter.FormatToLink(Model, method, format);
+	}
+
+	string FormatPropertySignature(PropertyInfoWithComment prop)
+	{
+		return ViewBag.Formatter.FormatToReadableSignature(prop);
+	}
+
+	string FormatPropertyAnchor(PropertyInfoWithComment prop, string format = null)
+	{
+		return ViewBag.Formatter.FormatToAnchor(prop, format);
+	}
+
+	string FormatPropertyLink(PropertyInfoWithComment prop, string format = null)
+	{
+		return ViewBag.Formatter.FormatToLink(Model, prop, format);
+	}
+
+	string FormatFieldAnchor(FieldInfoWithComment field, string format = null)
+	{
+		return ViewBag.Formatter.FormatToAnchor(field, format);
+	}
+
+	string FormatFieldLink(FieldInfoWithComment field, string format = null)
+	{
+		return ViewBag.Formatter.FormatToLink(Model, field, format);
+	}
+
+	string FormatEventAnchor(EventInfoWithComment evt, string format = null)
+	{
+		return ViewBag.Formatter.FormatToAnchor(evt, format);
+	}
+
+	string FormatEventLink(EventInfoWithComment evt, string format = null)
+	{
+		return ViewBag.Formatter.FormatToLink(Model, evt, format);
+	}
+
+	string FormatTextContent(string text)
+	{
+		return ViewBag.Formatter.ReplaceReferenceTag(Model, text);
+	}
+
+	string ObsoleteType(TypeWithComment type)
+	{
+		return type.IsObsolete ? "**[OBSOLETE]** " : "";
+	}
+
+	string ObsoleteConstructor(ConstructorInfoWithComment member)
+	{
+		return member.IsObsolete ? "**[OBSOLETE]** " : "";
+	}
+
+	string ObsoleteProperty(PropertyInfoWithComment member)
+	{
+		return member.IsObsolete ? "**[OBSOLETE]** " : "";
+	}
+
+	string ObsoleteField(FieldInfoWithComment member)
+	{
+		return member.IsObsolete ? "**[OBSOLETE]** " : "";
+	}
+
+	string ObsoleteMethod(MethodInfoWithComment member)
+	{
+		return member.IsObsolete ? "**[OBSOLETE]** " : "";
+	}
+
+	string ObsoleteEvent(EventInfoWithComment member)
+	{
+		return member.IsObsolete ? "**[OBSOLETE]** " : "";
+	}
+
+}
+
+@* ******************** Title ******************** *@
+
+# @FormatTypeName(Model, false) @(Model.IsDelegate ? "Delegate" : Model.IsInterface ? "Interface" : Model.IsEnum ? "Enum" : Model.IsValueType ? "ValueType" : Model.IsClass ? "Class" : "Type")
+
+@ObsoleteType(Model)
+
+@FormatTextContent(Model.Comment.Summary)
+
+@* ******************** Delegate Declaretion ******************** *@
+
+@if (Model.IsDelegate)
+{
+@:```c#
+@:@Model.GetDelegateDeclaretion()
+@:```
+}
+
+@* ******************** Remarks ******************** *@
+
+@foreach (var text in Model.Comment.RemarkLines())
+{
+@:
+@:@FormatTextContent(text)
+@:
+}
+
+@* ******************** Generic Parameters ******************** *@
+
+@if (Model.GenericParameterTypes.Count > 0)
+{
+@:## Generic Parameters
+@:|Name|Description|Constraints|
+@:|:--|:--|:--|
+	foreach (var parameter in Model.GenericParameterTypes)
+	{
+@:| @parameter.Name | @parameter.Comment.GetDescription() | @FormatTypeParameterConstraints(parameter) |
+	}
+}
+
+@* ******************** Inheritance & Implements ******************** *@
+
+@if (!Model.IsDelegate && !Model.IsEnum)
+{
+@:## Inheritance tree
+	foreach (var baseType in Model.EnumerateBaseTypes())
+	{
+@:* @FormatTypeLink(baseType, true, "{0}")
+	}
+
+	if (Model.HasImplementedInterfaces)
+	{
+@:## Implemented interfaces
+		foreach (var interfaceType in Model.EnumerateImplementedInterfaces())
+		{
+@:* @FormatTypeLink(interfaceType, true, "{0}")
+		}
+	}
+}
+
+@* ******************** Links ******************** *@
+
+@if (Model.Constructors.Count > 0)
+{
+@:[Constructors](#Constructors)&nbsp;&nbsp;
+}
+@if (Model.Properties.Count > 0)
+{
+@:[Properties](#Properties)&nbsp;&nbsp;
+}
+@if (Model.Fields.Count > 0)
+{
+@:[Fields](#Fields)&nbsp;&nbsp;
+}
+@if (Model.Methods.Count > 0)
+{
+@:[Methods](#Methods)&nbsp;&nbsp;
+}
+@if (Model.Events.Count > 0)
+{
+@:[Events](#Events)&nbsp;&nbsp;
+}
+
+@* ******************** Constructors ******************** *@
+
+@if (Model.Constructors.Count > 0)
+{
+@:---
+@:## Constructors
+
+@:|Scope|Signature|Summary|
+@:|:--|:--|:--|
+	foreach (var ctor in Model.Constructors)
+	{
+@:| @FormatMemberScope(ctor.Scope) | @FormatConstructorLink(ctor) | @ObsoleteConstructor(ctor)@FormatTextContent(ctor.Comment.Summary) |
+	}
+
+	foreach (var ctor in Model.Constructors)
+	{
+@:---
+@:### @FormatConstructorAnchor(ctor)
+
+@:@ObsoleteConstructor(ctor)
+
+@:@FormatTextContent(ctor.Comment.Summary)
+
+@:```c#
+@:@ctor.Declaretion
+@:```
+
+		foreach (var text in ctor.Comment.RemarkLines())
+		{
+@:
+@:@FormatTextContent(text)
+@:
+		}
+
+		if (ctor.Parameters.Count > 0)
+		{
+@:#### Parameters
+
+@:|Name|Parameter Type|Description|
+@:|:--|:--|:--|
+			foreach (var para in ctor.Parameters)
+			{
+@:| @para.Name | @FormatTypeLink(para.ParameterTypeInfo, false) | @FormatTextContent(para.GetDescription()) |
+			}
+		}
+
+		if (ctor.Comment.Exceptions.Count > 0)
+		{
+@:#### Exceptions
+
+@:|Exception Type|Message|
+@:|:--|:--|
+			foreach (var ex in ctor.Comment.Exceptions)
+			{
+@:| @FormatTypeLink(ex.ExceptionTypeInfo, false) | @FormatTextContent(ex.GetDescriptions()) |
+			}
+		}
+@:
+@:[Go to constructors](#Constructors)
+@:
+	}
+
+}
+
+@* ******************** Properties ******************** *@
+
+@if (Model.Properties.Count > 0)
+{
+@:---
+	if (Model.HasInstanceProperty)
+	{
+@:## Properties
+
+@:|Scope|Name|Property Type|Summary|
+@:|:--|:--|:--|:--|
+		foreach (var prop in Model.Properties)
+		{
+			if (prop.IsStatic) { continue; }
+@:| @FormatMemberScope(prop.Scope) | @FormatPropertyLink(prop) | @FormatTypeLink(prop.PropertyTypeInfo, false) | @ObsoleteProperty(prop)@FormatTextContent(prop.GetSummaryWithInherits()) |
+		}
+	}
+
+	if (Model.HasStaticProperty)
+	{
+@:## Static Properties
+
+@:|Scope|Name|Property Type|Summary|
+@:|:--|:--|:--|:--|
+		foreach (var prop in Model.Properties)
+		{
+			if (!prop.IsStatic) { continue; }
+@:| @FormatMemberScope(prop.Scope) | @FormatPropertyLink(prop) | @FormatTypeLink(prop.PropertyTypeInfo, false) | @ObsoleteProperty(prop)@FormatTextContent(prop.GetSummaryWithInherits()) |
+		}
+	}
+
+	foreach (var prop in Model.Properties)
+	{
+@:---
+@:### @FormatPropertyAnchor(prop)
+
+@:@ObsoleteProperty(prop)
+
+@:@FormatTextContent(prop.GetSummaryWithInherits())
+
+@:```c#
+@:@prop.Declaretion
+@:```
+
+		foreach (var text in prop.Comment.RemarkLines())
+		{
+@:
+@:@FormatTextContent(text)
+@:
+		}
+
+		if (prop.Parameters.Count > 0)
+		{
+@:#### Parameters
+
+@:|Name|Parameter Type|Description|
+@:|:--|:--|:--|
+			foreach (var para in prop.Parameters)
+			{
+@:| @para.Name | @FormatTypeLink(para.ParameterTypeInfo, false) | @FormatTextContent(para.GetDescription()) |
+			}
+		}
+
+		if (prop.Comment.Exceptions.Count > 0)
+		{
+@:#### Exceptions
+
+@:|Exception Type|Message|
+@:|:--|:--|
+			foreach (var ex in prop.Comment.Exceptions)
+			{
+@:| @FormatTypeLink(ex.ExceptionTypeInfo, false) | @FormatTextContent(ex.GetDescriptions()) |
+			}
+		}
+@:
+@:[Go to properties](#Properties)
+@:
+	}
+
+}
+
+@* ******************** Fields ******************** *@
+
+@if (Model.IsEnum)
+{
+@:|Scope|Name|Value|Summary|
+@:|:--|:--|:--|:--|
+	foreach (var field in Model.Fields)
+	{
+@:| @FormatMemberScope(field.Scope) | @FormatFieldLink(field) | @Convert.ToInt64(field.Info.GetValue(null)) | @ObsoleteField(field)@FormatTextContent(field.Comment.Summary) |
+	}
+}
+else
+{
+	if (Model.Fields.Count > 0)
+	{
+@:---
+		if (Model.HasInstanceField)
+		{
+@:## Fields
+
+@:|Scope|Name|Field Type|Summary|
+@:|:--|:--|:--|:--|
+			foreach (var field in Model.Fields)
+			{
+				if (field.IsStatic) { continue; }
+@:| @FormatMemberScope(field.Scope) | @FormatFieldLink(field) | @FormatTypeLink(field.FieldTypeInfo, false) | @ObsoleteField(field)@FormatTextContent(field.Comment.Summary) |
+			}
+		}
+
+		if (Model.HasStaticField)
+		{
+@:## Static Fields
+
+@:|Scope|Name|Field Type|Summary|
+@:|:--|:--|:--|:--|
+			foreach (var field in Model.Fields)
+			{
+				if (!field.IsStatic) { continue; }
+@:| @FormatMemberScope(field.Scope) | @FormatFieldLink(field) | @FormatTypeLink(field.FieldTypeInfo, false) | @ObsoleteField(field)@FormatTextContent(field.Comment.Summary) |
+			}
+		}
+
+		foreach (var field in Model.Fields)
+		{
+@:---
+@:### @FormatFieldAnchor(field)
+
+@:@ObsoleteField(field)
+
+@:@FormatTextContent(field.Comment.Summary)
+
+			foreach (var text in field.Comment.RemarkLines())
+			{
+@:
+@:@FormatTextContent(text)
+@:
+			}
+
+			if (field.Comment.Exceptions.Count > 0)
+			{
+@:#### Exceptions
+
+@:|Exception Type|Message|
+@:|:--|:--|
+				foreach (var ex in field.Comment.Exceptions)
+				{
+@:| @FormatTypeLink(ex.ExceptionTypeInfo, false) | @FormatTextContent(ex.GetDescriptions()) |
+				}
+			}
+@:
+@:[Go to fields](#Fields)
+@:
+		}
+	}
+}
+
+@* ******************** Methods ******************** *@
+
+@if (Model.Methods.Count > 0)
+{
+@:---
+	if (Model.HasInstanceMethod)
+	{
+@:## Methods
+
+@:|Scope|Signature|Return Type|Summary|
+@:|:--|:--|:--|:--|
+		foreach (var method in Model.Methods)
+		{
+			if (method.IsStatic) { continue; }
+@:| @FormatMemberScope(method.Scope) | @FormatMethodLink(method) | @FormatTypeLink(method.ReturnTypeInfo, false) | @ObsoleteMethod(method)@FormatTextContent(method.GetSummaryWithInherits()) |
+		}
+	}
+
+	if (Model.HasStaticMethod)
+	{
+@:## Static Methods
+
+@:|Scope|Signature|Return Type|Summary|
+@:|:--|:--|:--|:--|
+		foreach (var method in Model.Methods)
+		{
+			if (!method.IsStatic) { continue; }
+@:| @FormatMemberScope(method.Scope) | @FormatMethodLink(method) | @FormatTypeLink(method.ReturnTypeInfo, false) | @ObsoleteMethod(method)@FormatTextContent(method.GetSummaryWithInherits()) |
+		}
+	}
+
+	foreach (var method in Model.Methods)
+	{
+@:---
+@:### @FormatMethodAnchor(method)
+
+@:@ObsoleteMethod(method)
+
+@:@FormatTextContent(method.GetSummaryWithInherits())
+
+@:```c#
+@:@method.Declaretion
+@:```
+
+		foreach (var text in method.Comment.RemarkLines())
+		{
+@:
+@:@FormatTextContent(text)
+@:
+		}
+
+		if (method.GenericParameterTypes.Count > 0)
+		{
+@:## Generic Parameters
+@:|Name|Description|Constraints|
+@:|:--|:--|:--|
+			foreach (var parameter in method.GenericParameterTypes)
+			{
+@:| @parameter.Name | @parameter.Comment.GetDescription() | @FormatTypeParameterConstraints(parameter) |
+			}
+		}
+
+		if (method.Parameters.Count > 0)
+		{
+@:#### Parameters
+
+@:|Name|Parameter Type|I/O|Description|
+@:|:--|:--|:-:|:--|
+			foreach (var para in method.Parameters)
+			{
+@:| @para.Name | @FormatTypeLink(para.ParameterTypeInfo, false) | @para.IO | @FormatTextContent(para.GetDescription()) |
+			}
+		}
+
+		if (method.HasReturnValue)
+		{
+@:#### Return type
+
+@:@FormatTextContent(method.Comment.Returns)
+		}
+
+		if (method.Comment.Exceptions.Count > 0)
+		{
+@:#### Exceptions
+
+@:|Exception Type|Message|
+@:|:--|:--|
+			foreach (var ex in method.Comment.Exceptions)
+			{
+@:| @FormatTypeLink(ex.ExceptionTypeInfo, false) | @FormatTextContent(ex.GetDescriptions()) |
+			}
+		}
+@:
+@:[Go to methods](#Methods)
+@:
+	}
+
+}
+
+@* ******************** Events ******************** *@
+
+@if (Model.Events.Count > 0)
+{
+@:---
+	if (Model.HasInstanceEvent)
+	{
+@:## Events
+
+@:|Scope|Name|EventHandler Type|Summary|
+@:|:--|:--|:--|:--|
+		foreach (var evt in Model.Events)
+		{
+			if (evt.IsStatic) { continue; }
+@:| @FormatMemberScope(evt.Scope) | @FormatEventLink(evt) | @FormatTypeLink(evt.EventHandlerTypeInfo, false) | @ObsoleteEvent(evt)@FormatTextContent(evt.GetSummaryWithInherits()) |
+		}
+	}
+
+	if (Model.HasStaticEvent)
+	{
+@:## Static Events
+
+@:|Scope|Name|EventHandler Type|Summary|
+@:|:--|:--|:--|:--|
+		foreach (var evt in Model.Events)
+		{
+			if (!evt.IsStatic) { continue; }
+@:| @FormatMemberScope(evt.Scope) | @FormatEventLink(evt) | @FormatTypeLink(evt.EventHandlerTypeInfo, false) | @ObsoleteEvent(evt)@FormatTextContent(evt.GetSummaryWithInherits()) |
+		}
+	}
+
+	foreach (var evt in Model.Events)
+	{
+@:---
+@:### @FormatEventAnchor(evt)
+
+@:@ObsoleteEvent(evt)
+
+@:@FormatTextContent(evt.GetSummaryWithInherits())
+
+		foreach (var text in evt.Comment.RemarkLines())
+		{
+@:
+@:@FormatTextContent(text)
+@:
+		}
+
+		if (evt.Comment.Exceptions.Count > 0)
+		{
+@:#### Exceptions
+
+@:|Exception Type|Message|
+@:|:--|:--|
+			foreach (var ex in evt.Comment.Exceptions)
+			{
+@:| @FormatTypeLink(ex.ExceptionTypeInfo, false) | @FormatTextContent(ex.GetDescriptions()) |
+			}
+		}
+@:
+@:[Go to events](#Events)
+@:
+	}
+
+}
+
+@* ******************** Delegate parameters and return value ******************** *@
+
+@if (Model.IsDelegate)
+{
+	if (Model.DelegateParameters.Count > 0)
+	{
+@:## Parameters
+
+@:|Name|Parameter Type|I/O|Description|
+@:|:--|:--|:-:|:--|
+		foreach (var para in Model.DelegateParameters)
+		{
+@:| @para.Name | @FormatTypeLink(para.ParameterTypeInfo, false) | @para.IO | @FormatTextContent(para.GetDescription()) |
+		}
+	}
+
+	if (Model.HasDelegateReturnValue)
+	{
+@:## Return type
+
+@:@FormatTextContent(Model.Comment.Returns)
+	}
+}

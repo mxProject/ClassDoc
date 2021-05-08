@@ -12,12 +12,13 @@ namespace mxProject.Tools.ClassDoc.Razors
     /// </summary>
     public class RazorDocumentWriter : IClassDocumentWriter, IDisposable
     {
-
         /// <summary>
-        /// Create a new instance.
+        /// ctor
         /// </summary>
-        /// <param name="encoding">The output document encoding.</param>
-        public RazorDocumentWriter(Encoding encoding)
+        /// <param name="encoding"></param>
+        /// <param name="namespaceDocumentTemplate"></param>
+        /// <param name="typeDocumentTemplate"></param>
+        protected RazorDocumentWriter(Encoding encoding, string namespaceDocumentTemplate, string typeDocumentTemplate)
         {
             Encoding = encoding;
 
@@ -29,12 +30,27 @@ namespace mxProject.Tools.ClassDoc.Razors
             m_Engine = RazorEngine.Templating.RazorEngineService.Create(config);
 
             m_NamespaceDocumentTempkateKey = new TemplateKey("NameSpaceDocument");
-            m_NamespaceDocumentTempkateSource = new TemplateSource("");
+            m_NamespaceDocumentTempkateSource = new TemplateSource(namespaceDocumentTemplate);
             m_Engine.AddTemplate(m_NamespaceDocumentTempkateKey, m_NamespaceDocumentTempkateSource);
 
             m_TypeDocumentTempkateKey = new TemplateKey("TypeDocument");
-            m_TypeDocumentTempkateSource = new TemplateSource("");
+            m_TypeDocumentTempkateSource = new TemplateSource(typeDocumentTemplate);
             m_Engine.AddTemplate(m_TypeDocumentTempkateKey, m_TypeDocumentTempkateSource);
+        }
+
+        /// <summary>
+        /// Create a new instance.
+        /// </summary>
+        /// <param name="encoding">The output document encoding.</param>
+        /// <param name="namespaceDocumentTemplate">The namespace document template.</param>
+        /// <param name="typeDocumentTemplate">The type document template.</param>
+        public static RazorDocumentWriter Create(Encoding encoding, string namespaceDocumentTemplate, string typeDocumentTemplate)
+        {
+            RazorDocumentWriter instance = new RazorDocumentWriter(encoding, namespaceDocumentTemplate, typeDocumentTemplate);
+
+            instance.CompileTemplate();
+
+            return instance;
         }
 
         /// <inheritdoc/>
@@ -45,7 +61,7 @@ namespace mxProject.Tools.ClassDoc.Razors
 
         private readonly RazorEngine.Templating.IRazorEngineService m_Engine;
 
-        #region template definition
+        #region template
 
         private readonly TemplateKey m_TypeDocumentTempkateKey;
         private readonly TemplateSource m_TypeDocumentTempkateSource;
@@ -53,6 +69,18 @@ namespace mxProject.Tools.ClassDoc.Razors
         private readonly TemplateKey m_NamespaceDocumentTempkateKey;
         private readonly TemplateSource m_NamespaceDocumentTempkateSource;
 
+        /// <summary>
+        /// Compiles the templates.
+        /// </summary>
+        private void CompileTemplate()
+        {
+            m_Engine.Compile(m_NamespaceDocumentTempkateKey, typeof(NamespaceInfo));
+            m_Engine.Compile(m_TypeDocumentTempkateKey, typeof(TypeWithComment));
+        }
+
+        /// <summary>
+        /// Template Key.
+        /// </summary>
         private readonly struct TemplateKey : RazorEngine.Templating.ITemplateKey
         {
             internal TemplateKey(string name)
@@ -64,7 +92,7 @@ namespace mxProject.Tools.ClassDoc.Razors
 
             public ResolveType TemplateType => ResolveType.Global;
 
-            public ITemplateKey Context => null;
+            public ITemplateKey Context => this;
 
             public string GetUniqueKeyString()
             {
@@ -72,6 +100,9 @@ namespace mxProject.Tools.ClassDoc.Razors
             }
         }
 
+        /// <summary>
+        /// Template Source.
+        /// </summary>
         private class TemplateSource : RazorEngine.Templating.ITemplateSource
         {
             internal TemplateSource(string template)
@@ -97,24 +128,6 @@ namespace mxProject.Tools.ClassDoc.Razors
         public Encoding Encoding { get; }
 
         /// <summary>
-        /// Gets or sets the namespace document template.
-        /// </summary>
-        public string NamespaceDocumentTemplate
-        {
-            get { return m_NamespaceDocumentTempkateSource.Template; }
-            set { m_NamespaceDocumentTempkateSource.Template = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the type document template.
-        /// </summary>
-        public string TypeDocumentTemplate
-        {
-            get { return m_TypeDocumentTempkateSource.Template; }
-            set { m_TypeDocumentTempkateSource.Template = value; }
-        }
-
-        /// <summary>
         /// Gets or sets the path of the root directory of the output destination.
         /// </summary>
         public string RootDirectory { get; set; }
@@ -136,11 +149,11 @@ namespace mxProject.Tools.ClassDoc.Razors
             RazorEngine.Templating.DynamicViewBag viewBag = new RazorEngine.Templating.DynamicViewBag();
             viewBag.AddValue("Formatter", formatter);
 
-            using (StreamWriter writer = new StreamWriter(filePath, false, Encoding))
-            {
-                m_Engine.RunCompile(m_NamespaceDocumentTempkateKey, writer, nameSpace.GetType(), nameSpace, viewBag: viewBag);
-                writer.Flush();
-            }
+            using StreamWriter writer = new StreamWriter(filePath, false, Encoding);
+
+            m_Engine.Run(m_NamespaceDocumentTempkateKey, writer, nameSpace.GetType(), nameSpace, viewBag: viewBag);
+
+            writer.Flush();
         }
 
         /// <summary>
@@ -179,11 +192,11 @@ namespace mxProject.Tools.ClassDoc.Razors
             RazorEngine.Templating.DynamicViewBag viewBag = new RazorEngine.Templating.DynamicViewBag();
             viewBag.AddValue("Formatter", formatter);
 
-            using (StreamWriter writer = new StreamWriter(filePath, false, Encoding))
-            {
-                m_Engine.RunCompile(m_TypeDocumentTempkateKey, writer, type.GetType(), type, viewBag: viewBag);
-                writer.Flush();
-            }
+            using StreamWriter writer = new StreamWriter(filePath, false, Encoding);
+
+            m_Engine.Run(m_TypeDocumentTempkateKey, writer, type.GetType(), type, viewBag: viewBag);
+
+            writer.Flush();
         }
 
         /// <summary>
