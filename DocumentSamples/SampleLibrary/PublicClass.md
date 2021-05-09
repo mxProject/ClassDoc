@@ -16,7 +16,7 @@ public class.
 
 
 ## Inheritance tree
-* System.Object
+* object
 
 [Constructors](#Constructors)&nbsp;&nbsp;
 [Properties](#Properties)&nbsp;&nbsp;

@@ -17,7 +17,7 @@ Sample structure.
 
 ## Inheritance tree
 * System.ValueType
-* System.Object
+* object
 ## Implemented interfaces
 * [SampleLibrary.ISample](../SampleLibrary/ISample.md)
 

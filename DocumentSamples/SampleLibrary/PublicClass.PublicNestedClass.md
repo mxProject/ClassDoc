@@ -16,7 +16,7 @@ A public nested class.
 
 
 ## Inheritance tree
-* System.Object
+* object
 
 [Constructors](#Constructors)&nbsp;&nbsp;
 [Methods](#Methods)&nbsp;&nbsp;

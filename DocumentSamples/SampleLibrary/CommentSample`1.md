@@ -86,7 +86,7 @@ Link to event :  [seealso SampleSubClass.SubClassEvent](../SampleLibrary/SampleS
 | TItem | The type of the value. |  |
 
 ## Inheritance tree
-* System.Object
+* object
 
 [Constructors](#Constructors)&nbsp;&nbsp;
 [Methods](#Methods)&nbsp;&nbsp;
