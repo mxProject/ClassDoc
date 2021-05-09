@@ -13,44 +13,15 @@ namespace mxProject.Tools.ClassDoc.Razors
     public class RazorDocumentWriter : IClassDocumentWriter, IDisposable
     {
         /// <summary>
-        /// ctor
-        /// </summary>
-        /// <param name="encoding"></param>
-        /// <param name="namespaceDocumentTemplate"></param>
-        /// <param name="typeDocumentTemplate"></param>
-        protected RazorDocumentWriter(Encoding encoding, string namespaceDocumentTemplate, string typeDocumentTemplate)
-        {
-            Encoding = encoding;
-
-            var config = new RazorEngine.Configuration.TemplateServiceConfiguration
-            {
-                EncodedStringFactory = new RazorEngine.Text.RawStringFactory()
-            };
-
-            m_Engine = RazorEngine.Templating.RazorEngineService.Create(config);
-
-            m_NamespaceDocumentTempkateKey = new TemplateKey("NameSpaceDocument");
-            m_NamespaceDocumentTempkateSource = new TemplateSource(namespaceDocumentTemplate);
-            m_Engine.AddTemplate(m_NamespaceDocumentTempkateKey, m_NamespaceDocumentTempkateSource);
-
-            m_TypeDocumentTempkateKey = new TemplateKey("TypeDocument");
-            m_TypeDocumentTempkateSource = new TemplateSource(typeDocumentTemplate);
-            m_Engine.AddTemplate(m_TypeDocumentTempkateKey, m_TypeDocumentTempkateSource);
-        }
-
-        /// <summary>
         /// Create a new instance.
         /// </summary>
-        /// <param name="encoding">The output document encoding.</param>
-        /// <param name="namespaceDocumentTemplate">The namespace document template.</param>
-        /// <param name="typeDocumentTemplate">The type document template.</param>
-        public static RazorDocumentWriter Create(Encoding encoding, string namespaceDocumentTemplate, string typeDocumentTemplate)
+        /// <param name="settings">The settings.</param>
+        public RazorDocumentWriter(RazorDocumentWriterSettings settings)
         {
-            RazorDocumentWriter instance = new RazorDocumentWriter(encoding, namespaceDocumentTemplate, typeDocumentTemplate);
+            Settings = settings;
 
-            instance.CompileTemplate();
-
-            return instance;
+            NamespaceDocumentTemplateState = Engine.CreateTemplateState("NameSpaceDocument", Settings.NamespaceDodumentSettings?.Template);
+            TypeDocumentTemplateState = Engine.CreateTemplateState("TypeDocument", Settings.TypeDodumentSettings?.Template);
         }
 
         /// <inheritdoc/>
@@ -59,101 +30,102 @@ namespace mxProject.Tools.ClassDoc.Razors
             m_Engine?.Dispose();
         }
 
-        private readonly RazorEngine.Templating.IRazorEngineService m_Engine;
-
-        #region template
-
-        private readonly TemplateKey m_TypeDocumentTempkateKey;
-        private readonly TemplateSource m_TypeDocumentTempkateSource;
-
-        private readonly TemplateKey m_NamespaceDocumentTempkateKey;
-        private readonly TemplateSource m_NamespaceDocumentTempkateSource;
+        #region settings
 
         /// <summary>
-        /// Compiles the templates.
+        /// Gets the settings.
         /// </summary>
-        private void CompileTemplate()
-        {
-            m_Engine.Compile(m_NamespaceDocumentTempkateKey, typeof(NamespaceInfo));
-            m_Engine.Compile(m_TypeDocumentTempkateKey, typeof(TypeWithComment));
-        }
+        protected RazorDocumentWriterSettings Settings { get; }
+
+        #endregion
+
+        #region engine
 
         /// <summary>
-        /// Template Key.
+        /// Gets the Razor engine.
         /// </summary>
-        private readonly struct TemplateKey : RazorEngine.Templating.ITemplateKey
+        protected RazorEngine.Templating.IRazorEngineService Engine
         {
-            internal TemplateKey(string name)
+            get
             {
-                Name = name;
-            }
-
-            public string Name { get; }
-
-            public ResolveType TemplateType => ResolveType.Global;
-
-            public ITemplateKey Context => this;
-
-            public string GetUniqueKeyString()
-            {
-                return Name;
+                if (m_Engine == null)
+                {
+                    lock (this)
+                    {
+                        if (m_Engine == null)
+                        {
+                            m_Engine = CreateEngine();
+                        }
+                    }
+                }
+                return m_Engine;
             }
         }
 
+        private RazorEngine.Templating.IRazorEngineService? m_Engine;
+
         /// <summary>
-        /// Template Source.
+        /// Creates a Razor engine.
         /// </summary>
-        private class TemplateSource : RazorEngine.Templating.ITemplateSource
+        /// <returns></returns>
+        protected RazorEngine.Templating.IRazorEngineService CreateEngine()
         {
-            internal TemplateSource(string template)
+            var config = new RazorEngine.Configuration.TemplateServiceConfiguration
             {
-                Template = template;
-            }
+                EncodedStringFactory = new RazorEngine.Text.RawStringFactory()
+            };
 
-            public string TemplateFile => null;
-
-            public string Template { get; set; }
-
-            public TextReader GetTemplateReader()
-            {
-                return new StringReader(Template);
-            }
+            return RazorEngine.Templating.RazorEngineService.Create(config);
         }
 
         #endregion
 
-        /// <summary>
-        /// Gets the encoding.
-        /// </summary>
-        public Encoding Encoding { get; }
+        #region template
 
         /// <summary>
-        /// Gets or sets the path of the root directory of the output destination.
+        /// Gets the state of the type document template.
         /// </summary>
-        public string RootDirectory { get; set; }
+        protected RazorTemplateState TypeDocumentTemplateState { get; }
 
+        /// <summary>
+        /// Gets the state of the namespace document template.
+        /// </summary>
+        protected RazorTemplateState NamespaceDocumentTemplateState { get; }
+
+        #endregion
 
         #region namaspace document
+
+        /// <summary>
+        /// Outputs the information of the specified type to the document.
+        /// </summary>
+        /// <param name="nameSpace">The namespace information.</param>
+        /// <exception cref="NullReferenceException">
+        /// The document formatter is not set.
+        /// </exception>
+        public void WriteNamespaceDocument(NamespaceInfo nameSpace)
+        {
+            var formatter = Settings.NamespaceDodumentSettings?.DocumentFormatter;
+
+            if (formatter == null)
+            {
+                throw new NullReferenceException("The document formatter is not set.");
+            }
+
+            WriteNamespaceDocument(nameSpace, formatter);
+        }
 
         /// <inheritdoc/>
         public void WriteNamespaceDocument(NamespaceInfo nameSpace, IClassDocumentFormatter formatter)
         {
-            string filePath = GetNamespaceDocumentFilePath(nameSpace.Namespace, false);
-            string dir = Path.GetDirectoryName(filePath);
+            string filePath = GetNamespaceDocumentFilePath(nameSpace, false);
 
-            if (!Directory.Exists(dir))
+            if (!NamespaceDocumentTemplateState.IsCompiled)
             {
-                Directory.CreateDirectory(dir);
+                NamespaceDocumentTemplateState.Compile(typeof(NamespaceInfo));
             }
 
-            RazorEngine.Templating.DynamicViewBag viewBag = new RazorEngine.Templating.DynamicViewBag();
-            viewBag.AddValue("Formatter", formatter);
-
-            using StreamWriter writer = new StreamWriter(filePath, false, Encoding);
-
-            m_Engine.Run(m_NamespaceDocumentTempkateKey, writer, nameSpace.GetType(), nameSpace, viewBag: viewBag);
-
-            writer.Flush();
+            WriteDocument(nameSpace, filePath, Settings.NamespaceDodumentSettings?.Encoding, NamespaceDocumentTemplateState.Key, formatter);
         }
 
         /// <summary>
@@ -162,41 +134,64 @@ namespace mxProject.Tools.ClassDoc.Razors
         /// <param name="nameSpace">The namespace.</param>
         /// <param name="relative">A value that indicates whether to return a relative path from the root directory.</param>
         /// <returns></returns>
-        private string GetNamespaceDocumentFilePath(string nameSpace, bool relative)
+        private string GetNamespaceDocumentFilePath(NamespaceInfo nameSpace, bool relative)
         {
+            string fileName = (Settings.NamespaceDodumentSettings?.FileNameFormatter ?? GetNamespaceDocumentFileName)(nameSpace);
+
             if (relative)
             {
-                return Path.Combine(@"..\", $"{nameSpace}", "namespace.md");
+                return Path.Combine(@"..\", $"{nameSpace.Namespace}", fileName);
             }
             else
             {
-                return Path.Combine(RootDirectory, $"{nameSpace}", "namespace.md");
+                return Path.Combine(Settings.RootDirectory, $"{nameSpace.Namespace}", fileName);
             }
+        }
+
+        /// <summary>
+        /// Gets the document output file name for the specified namespace.
+        /// </summary>
+        /// <param name="nameSpace">The namespace.</param>
+        /// <returns></returns>
+        private string GetNamespaceDocumentFileName(NamespaceInfo nameSpace)
+        {
+            return "namespace.md";
         }
 
         #endregion
 
         #region type document
 
+        /// <summary>
+        /// Outputs the information of the specified type to the document.
+        /// </summary>
+        /// <param name="type">The type information.</param>
+        /// <exception cref="NullReferenceException">
+        /// The document formatter is not set.
+        /// </exception>
+        public void WriteTypeDocument(TypeWithComment type)
+        {
+            var formatter = Settings.TypeDodumentSettings?.DocumentFormatter;
+
+            if (formatter == null)
+            {
+                throw new NullReferenceException("The document formatter is not set.");
+            }
+
+            WriteTypeDocument(type, formatter);
+        }
+
         /// <inheritdoc/>
         public void WriteTypeDocument(TypeWithComment type, IClassDocumentFormatter formatter)
         {
             string filePath = GetTypeDocumentFilePath(type, false);
-            string dir = Path.GetDirectoryName(filePath);
 
-            if (!Directory.Exists(dir))
+            if (!TypeDocumentTemplateState.IsCompiled)
             {
-                Directory.CreateDirectory(dir);
+                TypeDocumentTemplateState.Compile(typeof(TypeWithComment));
             }
 
-            RazorEngine.Templating.DynamicViewBag viewBag = new RazorEngine.Templating.DynamicViewBag();
-            viewBag.AddValue("Formatter", formatter);
-
-            using StreamWriter writer = new StreamWriter(filePath, false, Encoding);
-
-            m_Engine.Run(m_TypeDocumentTempkateKey, writer, type.GetType(), type, viewBag: viewBag);
-
-            writer.Flush();
+            WriteDocument(type, filePath, Settings.TypeDodumentSettings?.Encoding, TypeDocumentTemplateState.Key, formatter);
         }
 
         /// <summary>
@@ -207,14 +202,57 @@ namespace mxProject.Tools.ClassDoc.Razors
         /// <returns></returns>
         private string GetTypeDocumentFilePath(TypeWithComment type, bool relative)
         {
+            string fileName = (Settings.TypeDodumentSettings?.FileNameFormatter ?? GetTypeDocumentFileName)(type);
+
             if (relative)
             {
                 return Path.Combine(@"..\", $"{type.Namespace}", $"{type.Name}.md");
             }
             else
             {
-                return Path.Combine(RootDirectory, $"{type.Namespace}", $"{type.Name}.md");
+                return Path.Combine(Settings.RootDirectory, $"{type.Namespace}", $"{type.Name}.md");
             }
+        }
+
+        /// <summary>
+        /// Gets the document output file name for the specified type.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private string GetTypeDocumentFileName(TypeWithComment type)
+        {
+            return $"{type.Name}.md";
+        }
+
+        #endregion
+
+        #region output document
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="filePath"></param>
+        /// <param name="encoding"></param>
+        /// <param name="templateKey"></param>
+        /// <param name="formatter"></param>
+        private void WriteDocument<T>(T model, string filePath, Encoding? encoding, ITemplateKey templateKey, IClassDocumentFormatter formatter)
+        {
+            string dir = Path.GetDirectoryName(filePath);
+
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+
+            RazorEngine.Templating.DynamicViewBag viewBag = new RazorEngine.Templating.DynamicViewBag();
+            viewBag.AddValue("Formatter", formatter);
+
+            using StreamWriter writer = new StreamWriter(filePath, false, encoding ?? Encoding.UTF8);
+
+            Engine.Run(templateKey, writer, typeof(T), model, viewBag: viewBag);
+
+            writer.Flush();
         }
 
         #endregion

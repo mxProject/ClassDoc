@@ -41,14 +41,6 @@ namespace SampleConsoleApp
                 @".\LoadAssemblies\SampleLibrary2.dll"
             };
 
-            // Setup a writer.
-            RazorDocumentWriter writer = new RazorDocumentWriter(Encoding.UTF8)
-            {
-                RootDirectory = @".\Documents\",
-                TypeDocumentTemplate = File.ReadAllText(typeTemplate, Encoding.UTF8),
-                NamespaceDocumentTemplate = File.ReadAllText(namespaceTemplate, Encoding.UTF8),
-            };
-
             // Setup a context and a formatter.
             ClassDocContext context = new ClassDocContext()
             {
@@ -72,6 +64,29 @@ namespace SampleConsoleApp
                 ParameterNameDefaultFormat = "`{0}`",
             };
 
+            // Setup a writer.
+            RazorDocumentWriterSettings settings = new RazorDocumentWriterSettings()
+            {
+                RootDirectory = @".\Documents\",
+                NamespaceDodumentSettings = new RazorDocumentSettings<NamespaceInfo>()
+                {
+                    DocumentFormatter = formatter,
+                    FileNameFormatter = x => "@namespace.md",
+                    Encoding = Encoding.UTF8,
+                    Template = File.ReadAllText(namespaceTemplate, Encoding.UTF8)
+                },
+                TypeDodumentSettings = new RazorDocumentSettings<TypeWithComment>()
+                {
+                    DocumentFormatter = formatter,
+                    FileNameFormatter = x => $"{x.Name}.md",
+                    Encoding = Encoding.UTF8,
+                    Template = File.ReadAllText(typeTemplate, Encoding.UTF8)
+                }
+            };
+
+            using RazorDocumentWriter writer = new RazorDocumentWriter(settings);
+
+
             // Load type information.
             IReadOnlyList<TypeWithComment> types = TypeLoader.LoadTypes(dlls, context, null);
 
@@ -81,12 +96,12 @@ namespace SampleConsoleApp
                 NamespaceInfo nameSpace = new NamespaceInfo(group.First()?.Namespace, group);
 
                 // Output the document for the namespace.
-                writer.WriteNamespaceDocument(nameSpace, formatter);
+                writer.WriteNamespaceDocument(nameSpace);
 
                 // Output the document for the type.
                 foreach (var type in group.OrderBy(type => type.Name))
                 {
-                    writer.WriteTypeDocument(type, formatter);
+                    writer.WriteTypeDocument(type);
                 }
             }
 

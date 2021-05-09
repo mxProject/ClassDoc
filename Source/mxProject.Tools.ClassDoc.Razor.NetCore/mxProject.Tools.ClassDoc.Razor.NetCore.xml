@@ -4,65 +4,107 @@
         <name>mxProject.Tools.ClassDoc.Razor.NetCore</name>
     </assembly>
     <members>
+        <member name="T:mxProject.Tools.ClassDoc.Razors.RazorDocumentSettings`1">
+            <summary>
+            Output document settings.
+            </summary>
+            <typeparam name="T">The type of object to output to the document.</typeparam>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorDocumentSettings`1.Encoding">
+            <summary>
+            Gets or sets the document encoding.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorDocumentSettings`1.Template">
+            <summary>
+            Gets or sets the Razor template.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorDocumentSettings`1.DocumentFormatter">
+            <summary>
+            Gets or sets the document formatter.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorDocumentSettings`1.FileNameFormatter">
+            <summary>
+            Gets or sets the output file name formatter.
+            </summary>
+        </member>
         <member name="T:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter">
             <summary>
             Document writer using Razor.
             </summary>
         </member>
-        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.#ctor(System.Text.Encoding,System.String,System.String)">
-            <summary>
-            ctor
-            </summary>
-            <param name="encoding"></param>
-            <param name="namespaceDocumentTemplate"></param>
-            <param name="typeDocumentTemplate"></param>
-        </member>
-        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.Create(System.Text.Encoding,System.String,System.String)">
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.#ctor(mxProject.Tools.ClassDoc.Razors.RazorDocumentWriterSettings)">
             <summary>
             Create a new instance.
             </summary>
-            <param name="encoding">The output document encoding.</param>
-            <param name="namespaceDocumentTemplate">The namespace document template.</param>
-            <param name="typeDocumentTemplate">The type document template.</param>
+            <param name="settings">The settings.</param>
         </member>
         <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.Dispose">
             <inheritdoc/>
         </member>
-        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.CompileTemplate">
+        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.Settings">
             <summary>
-            Compiles the templates.
+            Gets the settings.
             </summary>
         </member>
-        <member name="T:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.TemplateKey">
+        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.Engine">
             <summary>
-            Template Key.
+            Gets the Razor engine.
             </summary>
         </member>
-        <member name="T:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.TemplateSource">
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.CreateEngine">
             <summary>
-            Template Source.
+            Creates a Razor engine.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.TypeDocumentTemplateState">
+            <summary>
+            Gets the state of the type document template.
             </summary>
         </member>
-        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.Encoding">
+        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.NamespaceDocumentTemplateState">
             <summary>
-            Gets the encoding.
+            Gets the state of the namespace document template.
             </summary>
         </member>
-        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.RootDirectory">
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.WriteNamespaceDocument(mxProject.Tools.ClassDoc.NamespaceInfo)">
             <summary>
-            Gets or sets the path of the root directory of the output destination.
+            Outputs the information of the specified type to the document.
             </summary>
+            <param name="nameSpace">The namespace information.</param>
+            <exception cref="T:System.NullReferenceException">
+            The document formatter is not set.
+            </exception>
         </member>
         <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.WriteNamespaceDocument(mxProject.Tools.ClassDoc.NamespaceInfo,mxProject.Tools.ClassDoc.IClassDocumentFormatter)">
             <inheritdoc/>
         </member>
-        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.GetNamespaceDocumentFilePath(System.String,System.Boolean)">
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.GetNamespaceDocumentFilePath(mxProject.Tools.ClassDoc.NamespaceInfo,System.Boolean)">
             <summary>
             Gets the document output file path for the specified namespace.
             </summary>
             <param name="nameSpace">The namespace.</param>
             <param name="relative">A value that indicates whether to return a relative path from the root directory.</param>
             <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.GetNamespaceDocumentFileName(mxProject.Tools.ClassDoc.NamespaceInfo)">
+            <summary>
+            Gets the document output file name for the specified namespace.
+            </summary>
+            <param name="nameSpace">The namespace.</param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.WriteTypeDocument(mxProject.Tools.ClassDoc.TypeWithComment)">
+            <summary>
+            Outputs the information of the specified type to the document.
+            </summary>
+            <param name="type">The type information.</param>
+            <exception cref="T:System.NullReferenceException">
+            The document formatter is not set.
+            </exception>
         </member>
         <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.WriteTypeDocument(mxProject.Tools.ClassDoc.TypeWithComment,mxProject.Tools.ClassDoc.IClassDocumentFormatter)">
             <inheritdoc/>
@@ -74,6 +116,156 @@
             <param name="type">The type information.</param>
             <param name="relative">A value that indicates whether to return a relative path from the root directory.</param>
             <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.GetTypeDocumentFileName(mxProject.Tools.ClassDoc.TypeWithComment)">
+            <summary>
+            Gets the document output file name for the specified type.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriter.WriteDocument``1(``0,System.String,System.Text.Encoding,RazorEngine.Templating.ITemplateKey,mxProject.Tools.ClassDoc.IClassDocumentFormatter)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <param name="filePath"></param>
+            <param name="encoding"></param>
+            <param name="templateKey"></param>
+            <param name="formatter"></param>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriterSettings">
+            <summary>
+            DocumentWriter Setting.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriterSettings.RootDirectory">
+            <summary>
+            Gets or sets the path of the root directory of the output destination.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriterSettings.NamespaceDodumentSettings">
+            <summary>
+            Gets or sets the namespace document settings.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriterSettings.TypeDodumentSettings">
+            <summary>
+            Gets or sets the type document settings.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorDocumentWriterSettings.CreateDefaultSettings(System.Text.Encoding,System.String,mxProject.Tools.ClassDoc.IClassDocumentFormatter,System.String,System.String)">
+            <summary>
+            Create a default settings.
+            </summary>
+            <param name="encoding">The output document encoding.</param>
+            <param name="rootDirectory">The path of the root directory of the output destination.</param>
+            <param name="documentFormatter">The document formatter.</param>
+            <param name="namespaceDocumentTemplate">The Razor template for the namespace document.</param>
+            <param name="typeDocumentTemplate">The Razor template for the type document.</param>
+            <returns></returns>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.Razors.RazorTemplateKey">
+            <summary>
+            Template key.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorTemplateKey.#ctor(System.String)">
+            <summary>
+            Create a new instance.
+            </summary>
+            <param name="name">The unique name.</param>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorTemplateKey.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorTemplateKey.TemplateType">
+            <inheritdoc/>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorTemplateKey.Context">
+            <inheritdoc/>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorTemplateKey.GetUniqueKeyString">
+            <inheritdoc/>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.Razors.RazorTemplateSource">
+            <summary>
+            Template source.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorTemplateSource.#ctor(System.String)">
+            <summary>
+            Create a new instance.
+            </summary>
+            <param name="template">The template.</param>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorTemplateSource.TemplateFile">
+            <inheritdoc/>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorTemplateSource.Template">
+            <inheritdoc/>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorTemplateSource.GetTemplateReader">
+            <inheritdoc/>
+        </member>
+        <member name="T:mxProject.Tools.ClassDoc.Razors.RazorTemplateState">
+            <summary>
+            Template state.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorTemplateState.#ctor(RazorEngine.Templating.IRazorEngineService,System.String,System.String)">
+            <summary>
+            Create a new instance.
+            </summary>
+            <param name="engine">The template engine.</param>
+            <param name="key">The template key.</param>
+            <param name="template">The template.</param>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorTemplateState.#ctor(RazorEngine.Templating.IRazorEngineService,mxProject.Tools.ClassDoc.Razors.RazorTemplateKey,mxProject.Tools.ClassDoc.Razors.RazorTemplateSource)">
+            <summary>
+            Create a new instance.
+            </summary>
+            <param name="engine">The template engine.</param>
+            <param name="key">The template key.</param>
+            <param name="source">The template source.</param>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorTemplateState.Engine">
+            <summary>
+            Gets the template engine.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorTemplateState.Key">
+            <summary>
+            Gets the template key.
+            </summary>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorTemplateState.Source">
+            <summary>
+            Gets the template source.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorTemplateState.GetTemplate">
+            <summary>
+            Gets the template.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorTemplateState.SetTemplate(System.String)">
+            <summary>
+            Sets the template.
+            </summary>
+            <param name="template"></param>
+        </member>
+        <member name="P:mxProject.Tools.ClassDoc.Razors.RazorTemplateState.IsCompiled">
+            <summary>
+            Gets a value that indicates whether the template has been compiled.
+            </summary>
+        </member>
+        <member name="M:mxProject.Tools.ClassDoc.Razors.RazorTemplateState.Compile(System.Type)">
+            <summary>
+            Compiles the template.
+            </summary>
+            <param name="modelType">The type of object to output to the document.</param>
         </member>
     </members>
 </doc>

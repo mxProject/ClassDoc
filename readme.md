@@ -129,27 +129,6 @@ static void OutputDocument()
         @".\LoadAssemblies\SampleLibrary2.dll"
     };
 
-
-    // Setup a writer. (,NET Framework version)
-    RazorDocumentWriter writer = new RazorDocumentWriter(Encoding.UTF8)
-    {
-        RootDirectory = @".\Documents\",
-        TypeDocumentTemplate = File.ReadAllText(typeTemplate, Encoding.UTF8),
-        NamespaceDocumentTemplate = File.ReadAllText(namespaceTemplate, Encoding.UTF8),
-    };
-
-    // Setup a writer. (NetCore version)
-    string typeDocTemplate = File.ReadAllText(typeTemplate, Encoding.UTF8);
-    string namespaceDocTemplate = File.ReadAllText(namespaceTemplate, Encoding.UTF8);
-    using RazorDocumentWriter writer = RazorDocumentWriter.Create
-    (
-        Encoding.UTF8,
-        namespaceDocTemplate,
-        typeDocTemplate
-    );
-    writer.RootDirectory = @".\Documents\";
-
-
     // Setup a context and a formatter.
     ClassDocContext context = new ClassDocContext()
     {
@@ -172,6 +151,23 @@ static void OutputDocument()
         EventAnchorDefaultFormat = "{0} Event",
         ParameterNameDefaultFormat = "`{0}`",
     };
+
+    // Setup a writer.
+    string namespaceDocumentTemplate = File.ReadAllText(namespaceTemplate, Encoding.UTF8);
+    string typeDocumentTemplate = File.ReadAllText(typeTemplate, Encoding.UTF8);
+
+    RazorDocumentWriterSettings settings = RazorDocumentWriterSettings.CreateDefaultSettings(
+        Encoding.UTF8,
+        @".\Documents\",
+        formatter,
+        namespaceDocumentTemplate,
+        typeDocumentTemplate
+    );
+
+    settings.NamespaceDodumentSettings.FileNameFormatter = x => "@namespace.md";
+
+    using RazorDocumentWriter writer = new RazorDocumentWriter(settings);
+
 
     // Load type information.
     IReadOnlyList<TypeWithComment> types = TypeLoader.LoadTypes(dlls, context, null);
