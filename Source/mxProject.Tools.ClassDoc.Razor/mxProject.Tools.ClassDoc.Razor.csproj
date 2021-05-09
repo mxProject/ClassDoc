@@ -72,7 +72,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\ClassDoc\Razors\IRazorEngineServiceExtensions.cs" />
     <Compile Include="Tools\ClassDoc\Razors\RazorDocumentWriter.cs" />
+    <Compile Include="Tools\ClassDoc\Razors\RazorDocumentSettings.cs" />
+    <Compile Include="Tools\ClassDoc\Razors\RazorDocumentWriterSettings.cs" />
+    <Compile Include="Tools\ClassDoc\Razors\RazorTemplateKey.cs" />
+    <Compile Include="Tools\ClassDoc\Razors\RazorTemplateSource.cs" />
+    <Compile Include="Tools\ClassDoc\Razors\RazorTemplateState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

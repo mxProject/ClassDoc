@@ -41,15 +41,6 @@ namespace SampleConsoleApp
                 @".\LoadAssemblies\SampleLibrary2.dll"
             };
 
-            // Setup a writer.
-            string typeDocumentTemplate = File.ReadAllText(typeTemplate, Encoding.UTF8);
-            string namespaceDocumentTemplate = File.ReadAllText(namespaceTemplate, Encoding.UTF8);
-
-            using RazorDocumentWriter writer = RazorDocumentWriter.Create(Encoding.UTF8, namespaceDocumentTemplate, typeDocumentTemplate);
-
-            writer.RootDirectory = @".\Documents\";
-
-
             // Setup a context and a formatter.
             ClassDocContext context = new ClassDocContext()
             {
@@ -73,6 +64,23 @@ namespace SampleConsoleApp
                 ParameterNameDefaultFormat = "`{0}`",
             };
 
+            // Setup a writer.
+            string namespaceDocumentTemplate = File.ReadAllText(namespaceTemplate, Encoding.UTF8);
+            string typeDocumentTemplate = File.ReadAllText(typeTemplate, Encoding.UTF8);
+
+            RazorDocumentWriterSettings settings = RazorDocumentWriterSettings.CreateDefaultSettings(
+                Encoding.UTF8,
+                @".\Documents\",
+                formatter,
+                namespaceDocumentTemplate,
+                typeDocumentTemplate
+                );
+
+            settings.NamespaceDodumentSettings.FileNameFormatter = x => "@namespace.md";
+
+            using RazorDocumentWriter writer = new RazorDocumentWriter(settings);
+
+
             // Load type information.
             IReadOnlyList<TypeWithComment> types = TypeLoader.LoadTypes(dlls, context, null);
 
@@ -82,12 +90,12 @@ namespace SampleConsoleApp
                 NamespaceInfo nameSpace = new NamespaceInfo(group.First()?.Namespace, group);
 
                 // Output the document for the namespace.
-                writer.WriteNamespaceDocument(nameSpace, formatter);
+                writer.WriteNamespaceDocument(nameSpace);
 
                 // Output the document for the type.
                 foreach (var type in group.OrderBy(type => type.Name))
                 {
-                    writer.WriteTypeDocument(type, formatter);
+                    writer.WriteTypeDocument(type);
                 }
             }
 
