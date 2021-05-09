@@ -16,7 +16,7 @@ Sample class.
 
 
 ## Inheritance tree
-* System.Object
+* object
 ## Implemented interfaces
 * [SampleLibrary.ISample](../SampleLibrary/ISample.md)
 
@@ -47,6 +47,8 @@ protected SampleClass()
 |Scope|Name|Property Type|Summary|
 |:--|:--|:--|:--|
 | public | [AbstractProperty](#abstractproperty-property) | int | An abstract property. |
+| public | [GenericDictionaryProperty](#genericdictionaryproperty-property) | IDictionary&lt;int?, Color?&gt; | A genetic type property. |
+| public | [GenericListProperty](#genericlistproperty-property) | IList&lt;int?&gt; | A genetic type property. |
 | public | [Property](#property-property) | byte | A sealed property. |
 | public | [VirtualProperty](#virtualproperty-property) | short | A virtual property. |
 ## Static Properties
@@ -59,6 +61,26 @@ protected SampleClass()
 An abstract property.
 ```c#
 public abstract int AbstractProperty { get; set; }
+```
+
+[Go to properties](#Properties)
+
+---
+### GenericDictionaryProperty Property
+
+A genetic type property.
+```c#
+public IDictionary<int?, Color?> GenericDictionaryProperty { get; set; }
+```
+
+[Go to properties](#Properties)
+
+---
+### GenericListProperty Property
+
+A genetic type property.
+```c#
+public IList<int?> GenericListProperty { get; set; }
 ```
 
 [Go to properties](#Properties)
@@ -144,6 +166,7 @@ A static reaonly field.
 | public | [Action(byte)](#actionbyte-method) | void | A sealed action. |
 | public | [Equals(object)](#equalsobject-method) | bool | Inherited from  System.Object . |
 | protected | [Finalize](#finalize-method) | void | Inherited from  System.Object . |
+| public | [GetGenericTypeFunction(IList&lt;Color?&gt;)](#getgenerictypefunctionilistcolor-method) | IDictionary&lt;int?, Color?&gt; | A genetic type method. |
 | public | [GetHashCode](#gethashcode-method) | int | Inherited from  System.Object . |
 | public | [GetType](#gettype-method) | Type | Inherited from  System.Object . |
 | protected | [MemberwiseClone](#memberwiseclone-method) | object | Inherited from  System.Object . |
@@ -213,6 +236,28 @@ Inherited from  System.Object .
 ```c#
 protected virtual void Finalize()
 ```
+
+[Go to methods](#Methods)
+
+---
+### GetGenericTypeFunction(IList&lt;Color?&gt;) Method
+
+A genetic type method.
+```c#
+public IDictionary<int?, Color?> GetGenericTypeFunction
+(
+	IList<Color?> list
+)
+```
+
+dictionary.
+
+#### Parameters
+|Name|Parameter Type|I/O|Description|
+|:--|:--|:-:|:--|
+| list | IList&lt;Color?&gt; |  | list. |
+#### Return type
+
 
 [Go to methods](#Methods)
 

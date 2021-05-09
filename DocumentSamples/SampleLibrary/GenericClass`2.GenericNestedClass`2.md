@@ -23,7 +23,7 @@ Nested generic class.
 | N2 | 2nd type parameter. |  |
 
 ## Inheritance tree
-* System.Object
+* object
 
 [Constructors](#Constructors)&nbsp;&nbsp;
 [Methods](#Methods)&nbsp;&nbsp;

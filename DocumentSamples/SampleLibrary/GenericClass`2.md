@@ -21,7 +21,7 @@ Generic class with two type parameters declared.
 | T2 | 2nd type parameter. | struct |
 
 ## Inheritance tree
-* System.Object
+* object
 
 [Constructors](#Constructors)&nbsp;&nbsp;
 [Methods](#Methods)&nbsp;&nbsp;
@@ -309,8 +309,8 @@ public M2 GenericFunc<M1, M2>
 ## Generic Parameters
 |Name|Description|Constraints|
 |:--|:--|:--|
-| M1 |  |  |
-| M2 |  |  |
+| M1 | 1st type parameter of this method. |  |
+| M2 | 2nd type parameter of this method. |  |
 #### Parameters
 |Name|Parameter Type|I/O|Description|
 |:--|:--|:-:|:--|
@@ -336,7 +336,7 @@ public T1 GenericFunc<M1>
 ## Generic Parameters
 |Name|Description|Constraints|
 |:--|:--|:--|
-| M1 |  |  |
+| M1 | 1st type parameter of this method. |  |
 #### Parameters
 |Name|Parameter Type|I/O|Description|
 |:--|:--|:-:|:--|
@@ -361,7 +361,7 @@ public M1 GenericFunc<M1>
 ## Generic Parameters
 |Name|Description|Constraints|
 |:--|:--|:--|
-| M1 |  |  |
+| M1 | 1st type parameter of this method. |  |
 #### Parameters
 |Name|Parameter Type|I/O|Description|
 |:--|:--|:-:|:--|

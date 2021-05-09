@@ -16,7 +16,7 @@ Extension methods for [SampleClass](../SampleLibrary/SampleClass.md) .
 
 
 ## Inheritance tree
-* System.Object
+* object
 
 [Methods](#Methods)&nbsp;&nbsp;
 
