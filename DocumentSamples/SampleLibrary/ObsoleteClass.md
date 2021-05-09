@@ -16,7 +16,7 @@ Obsolete class.
 
 
 ## Inheritance tree
-* System.Object
+* object
 
 [Properties](#Properties)&nbsp;&nbsp;
 [Fields](#Fields)&nbsp;&nbsp;

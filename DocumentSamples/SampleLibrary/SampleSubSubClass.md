@@ -18,7 +18,7 @@ Sub class of [SampleSubClass](../SampleLibrary/SampleSubClass.md) .
 ## Inheritance tree
 * [SampleLibrary.SampleSubClass](../SampleLibrary/SampleSubClass.md)
 * [SampleLibrary.SampleClass](../SampleLibrary/SampleClass.md)
-* System.Object
+* object
 ## Implemented interfaces
 * [SampleLibrary.ISample](../SampleLibrary/ISample.md)
 
@@ -49,6 +49,8 @@ public SampleSubSubClass()
 |Scope|Name|Property Type|Summary|
 |:--|:--|:--|:--|
 | public | [AbstractProperty](#abstractproperty-property) | int | Inherited from  [SampleSubClass](../SampleLibrary/SampleSubClass.md) . |
+| public | [GenericDictionaryProperty](#genericdictionaryproperty-property) | IDictionary&lt;int?, Color?&gt; | Inherited from  [SampleClass](../SampleLibrary/SampleClass.md) . |
+| public | [GenericListProperty](#genericlistproperty-property) | IList&lt;int?&gt; | Inherited from  [SampleClass](../SampleLibrary/SampleClass.md) . |
 | public | [Property](#property-property) | byte | Inherited from  [SampleSubClass](../SampleLibrary/SampleSubClass.md) . |
 | public | [SubClassProperty](#subclassproperty-property) | long | Inherited from  [SampleSubClass](../SampleLibrary/SampleSubClass.md) . |
 | public | [SubSubClassProperty](#subsubclassproperty-property) | long | A property declared in [SampleSubSubClass](../SampleLibrary/SampleSubSubClass.md) . |
@@ -59,6 +61,26 @@ public SampleSubSubClass()
 Inherited from  [SampleSubClass](../SampleLibrary/SampleSubClass.md) .
 ```c#
 public virtual int AbstractProperty { get; set; }
+```
+
+[Go to properties](#Properties)
+
+---
+### GenericDictionaryProperty Property
+
+Inherited from  [SampleClass](../SampleLibrary/SampleClass.md) .
+```c#
+public IDictionary<int?, Color?> GenericDictionaryProperty { get; set; }
+```
+
+[Go to properties](#Properties)
+
+---
+### GenericListProperty Property
+
+Inherited from  [SampleClass](../SampleLibrary/SampleClass.md) .
+```c#
+public IList<int?> GenericListProperty { get; set; }
 ```
 
 [Go to properties](#Properties)
@@ -152,6 +174,7 @@ A field declared in [SampleSubSubClass](../SampleLibrary/SampleSubSubClass.md) .
 | public | [Action(byte)](#actionbyte-method) | void | Inherited from  [SampleClass](../SampleLibrary/SampleClass.md) . |
 | public | [Equals(object)](#equalsobject-method) | bool | Inherited from  System.Object . |
 | protected | [Finalize](#finalize-method) | void | Inherited from  System.Object . |
+| public | [GetGenericTypeFunction(IList&lt;Color?&gt;)](#getgenerictypefunctionilistcolor-method) | IDictionary&lt;int?, Color?&gt; | Inherited from  [SampleClass](../SampleLibrary/SampleClass.md) . |
 | public | [GetHashCode](#gethashcode-method) | int | Inherited from  System.Object . |
 | public | [GetType](#gettype-method) | Type | Inherited from  System.Object . |
 | protected | [MemberwiseClone](#memberwiseclone-method) | object | Inherited from  System.Object . |
@@ -236,6 +259,25 @@ Inherited from  System.Object .
 ```c#
 protected virtual void Finalize()
 ```
+
+[Go to methods](#Methods)
+
+---
+### GetGenericTypeFunction(IList&lt;Color?&gt;) Method
+
+Inherited from  [SampleClass](../SampleLibrary/SampleClass.md) .
+```c#
+public IDictionary<int?, Color?> GetGenericTypeFunction
+(
+	IList<Color?> list
+)
+```
+#### Parameters
+|Name|Parameter Type|I/O|Description|
+|:--|:--|:-:|:--|
+| list | IList&lt;Color?&gt; |  |  |
+#### Return type
+
 
 [Go to methods](#Methods)
 

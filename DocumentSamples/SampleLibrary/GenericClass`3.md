@@ -22,7 +22,7 @@ Generic class with three type parameters declared.
 | T3 | 3rd type parameter. | [ISample](../SampleLibrary/ISample.md), IEqualityComparer&lt;T3&gt; |
 
 ## Inheritance tree
-* System.Object
+* object
 
 [Constructors](#Constructors)&nbsp;&nbsp;
 [Methods](#Methods)&nbsp;&nbsp;

@@ -53,6 +53,14 @@ namespace SampleLibrary
         /// <param name="sample">sample instance.</param>
         public static void StaticAction(SampleClass sample) { }
 
+        /// <summary>
+        /// A genetic type method.
+        /// </summary>
+        /// <param name="list">list.</param>
+        /// <remarks>dictionary.</remarks>
+        public IDictionary<int?, System.Drawing.Color?> GetGenericTypeFunction(IList<System.Drawing.Color?> list) { return null; }
+
+
         #endregion
 
         #region property
@@ -81,6 +89,16 @@ namespace SampleLibrary
         /// A static property.
         /// </summary>
         public static int StaticProperty { get; } = 0;
+
+        /// <summary>
+        /// A genetic type property.
+        /// </summary>
+        public IList<int?> GenericListProperty { get; set; }
+
+        /// <summary>
+        /// A genetic type property.
+        /// </summary>
+        public IDictionary<int?, System.Drawing.Color?> GenericDictionaryProperty { get; set; }
 
         #endregion
 

@@ -20,7 +20,7 @@ Nested class.
 | T1 | 1st type parameter. | class |
 
 ## Inheritance tree
-* System.Object
+* object
 
 [Constructors](#Constructors)&nbsp;&nbsp;
 [Methods](#Methods)&nbsp;&nbsp;

@@ -21,7 +21,7 @@ Nested class.
 | T2 | 2nd type parameter. | struct |
 
 ## Inheritance tree
-* System.Object
+* object
 
 [Constructors](#Constructors)&nbsp;&nbsp;
 [Methods](#Methods)&nbsp;&nbsp;

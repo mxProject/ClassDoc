@@ -64,25 +64,35 @@ namespace mxProject.Tools.ClassDoc
 
             if (type.IsGenericParameter) { return type.Name; }
 
-            if (!isFullName)
-            {
-                if (type == typeof(void)) { return "void"; }
-                if (type == typeof(string)) { return "string"; }
-                if (type == typeof(char)) { return "char"; }
-                if (type == typeof(bool)) { return "bool"; }
-                if (type == typeof(byte)) { return "byte"; }
-                if (type == typeof(short)) { return "short"; }
-                if (type == typeof(int)) { return "int"; }
-                if (type == typeof(long)) { return "long"; }
-                if (type == typeof(float)) { return "float"; }
-                if (type == typeof(double)) { return "double"; }
-                if (type == typeof(decimal)) { return "decimal"; }
-                if (type == typeof(sbyte)) { return "sbyte"; }
-                if (type == typeof(ushort)) { return "ushort"; }
-                if (type == typeof(uint)) { return "uint"; }
-                if (type == typeof(ulong)) { return "ulong"; }
-                if (type == typeof(object)) { return "object"; }
-            }
+            if (type == typeof(void)) { return "void"; }
+            if (type == typeof(string)) { return "string"; }
+            if (type == typeof(char)) { return "char"; }
+            if (type == typeof(bool)) { return "bool"; }
+            if (type == typeof(byte)) { return "byte"; }
+            if (type == typeof(short)) { return "short"; }
+            if (type == typeof(int)) { return "int"; }
+            if (type == typeof(long)) { return "long"; }
+            if (type == typeof(float)) { return "float"; }
+            if (type == typeof(double)) { return "double"; }
+            if (type == typeof(decimal)) { return "decimal"; }
+            if (type == typeof(sbyte)) { return "sbyte"; }
+            if (type == typeof(ushort)) { return "ushort"; }
+            if (type == typeof(uint)) { return "uint"; }
+            if (type == typeof(ulong)) { return "ulong"; }
+            if (type == typeof(char?)) { return "char?"; }
+            if (type == typeof(bool?)) { return "bool?"; }
+            if (type == typeof(byte?)) { return "byte?"; }
+            if (type == typeof(short?)) { return "short?"; }
+            if (type == typeof(int?)) { return "int?"; }
+            if (type == typeof(long?)) { return "long?"; }
+            if (type == typeof(float?)) { return "float?"; }
+            if (type == typeof(double?)) { return "double?"; }
+            if (type == typeof(decimal?)) { return "decimal?"; }
+            if (type == typeof(sbyte?)) { return "sbyte?"; }
+            if (type == typeof(ushort?)) { return "ushort?"; }
+            if (type == typeof(uint?)) { return "uint?"; }
+            if (type == typeof(ulong?)) { return "ulong?"; }
+            if (type == typeof(object)) { return "object"; }
 
             if (type.IsNested && !inProsessingNesting)
             {
@@ -103,13 +113,14 @@ namespace mxProject.Tools.ClassDoc
 
             var definition = type.GetGenericTypeDefinition();
 
+            if (definition == typeof(Nullable<>))
+            {
+                return ZString.Concat(FormatToReadableTypeName(type.GetGenericArguments()[0], isFullName), "?");
+            }
+
             if (!isFullName)
             {
-                if (definition == typeof(Nullable<>))
-                {
-                    return ZString.Concat(FormatToReadableTypeNameCore(type.GetGenericArguments()[0], isFullName, inProsessingNesting), "?");
-                }
-                else if (definition == typeof(ValueTuple<,>)
+                if (definition == typeof(ValueTuple<,>)
                     || definition == typeof(ValueTuple<,,>)
                     || definition == typeof(ValueTuple<,,,>)
                     || definition == typeof(ValueTuple<,,,,>)
@@ -128,7 +139,7 @@ namespace mxProject.Tools.ClassDoc
                         for (int i = 0; i < arguments.Length; ++i)
                         {
                             if (i > 0) { sb.Append(", "); }
-                            sb.Append(FormatToReadableTypeNameCore(arguments[i], isFullName, inProsessingNesting));
+                            sb.Append(FormatToReadableTypeName(arguments[i], false));
                         }
 
                         sb.Append(")");
@@ -172,7 +183,7 @@ namespace mxProject.Tools.ClassDoc
                 for (int i = 0; i < genericArgs.Length; ++i)
                 {
                     if (i > 0) { sb.Append(", "); }
-                    sb.Append(genericArgs[i].FormatToReadableTypeName(false));
+                    sb.Append(genericArgs[i].FormatToReadableTypeName(isFullName));
                 }
 
                 sb.Append(">");

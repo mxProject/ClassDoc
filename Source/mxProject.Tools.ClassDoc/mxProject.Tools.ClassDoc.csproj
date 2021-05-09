@@ -5,12 +5,12 @@
     <RootNamespace>mxProject</RootNamespace>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>0.5.0</Version>
+    <Version>0.5.3</Version>
     <Description>Reads the XML document comment output from Visual Studio and outputs the document like a class reference without SandCastle.</Description>
     <Copyright>mxProject</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/mxProject/ClassDoc</PackageProjectUrl>
-    <PackageReleaseNotes>First release.</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixed #2</PackageReleaseNotes>
     <Authors>mxProject</Authors>
     <PackageTags>Documentation</PackageTags>
   </PropertyGroup>
