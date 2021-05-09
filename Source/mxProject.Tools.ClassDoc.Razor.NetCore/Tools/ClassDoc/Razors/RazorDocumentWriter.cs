@@ -206,11 +206,11 @@ namespace mxProject.Tools.ClassDoc.Razors
 
             if (relative)
             {
-                return Path.Combine(@"..\", $"{type.Namespace}", $"{type.Name}.md");
+                return Path.Combine(@"..\", $"{type.Namespace}", fileName);
             }
             else
             {
-                return Path.Combine(Settings.RootDirectory, $"{type.Namespace}", $"{type.Name}.md");
+                return Path.Combine(Settings.RootDirectory, $"{type.Namespace}", fileName);
             }
         }
 
