@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="mxProject.Tools.ClassDoc" Version="0.5.3" />
+    <PackageReference Include="mxProject.Tools.ClassDoc" Version="0.5.4" />
     <PackageReference Include="mxProject.Tools.ClassDoc.Razor.NetCore" Version="0.7.1" />
   </ItemGroup>
 
