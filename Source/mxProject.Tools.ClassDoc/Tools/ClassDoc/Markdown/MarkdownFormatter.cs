@@ -67,6 +67,8 @@ namespace mxProject.Tools.ClassDoc.Markdown
         /// <inheritdoc />
         public string FormatToReadableName(TypeWithComment type, bool isFullName)
         {
+            if (type == null) { return ""; }
+
             return System.Web.HttpUtility.HtmlEncode(type.Info.FormatToReadableTypeName(isFullName));
         }
 
@@ -79,6 +81,8 @@ namespace mxProject.Tools.ClassDoc.Markdown
         /// <inheritdoc />
         public string FormatToLink(TypeWithComment type, bool isFullName, string? displayFormat = null, string? anchorFormat = null)
         {
+            if (type == null) { return ""; }
+
             string displayText;
 
             if (string.IsNullOrEmpty(displayFormat))
