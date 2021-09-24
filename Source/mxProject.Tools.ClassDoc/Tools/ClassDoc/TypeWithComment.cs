@@ -613,6 +613,8 @@ namespace mxProject.Tools.ClassDoc
 
             MethodInfo method = Info.GetMethod("Invoke");
 
+            if (method == null) { return null; }
+
             return new MethodInfoWithComment(method, Comment, Context);
         }
 
